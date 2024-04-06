@@ -24,7 +24,7 @@ function Navbar() {
       </button>
 
       <Link to="/journal">
-        <button className=" text-violet-500">
+        <button className=" text-violet-500 flex flex-col items-center">
             <FontAwesomeIcon icon={faPenToSquare} className="icon" />
             <span className="btm-nav-label">Journal</span>
         </button>
