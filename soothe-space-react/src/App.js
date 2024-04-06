@@ -1,25 +1,21 @@
 import logo from './assets/images/logo.svg';
-import './assets/styles/App.css';
+import './assets/styles/app.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/layout/Layout';
+import Home from './features/homepage-feature/Home';  // Import components used via Layout's "outlet" here in App.js
+import ReactDOM from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}> {/* Layout component, nested components will have a path of "/" and render the layout component (will be handled within navBar) */}
+          <Route index element={<Home />} />  
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
+
 
 export default App;
