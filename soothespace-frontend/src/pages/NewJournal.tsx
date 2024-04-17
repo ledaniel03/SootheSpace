@@ -9,7 +9,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
     const [actions, setActions] = useState([] as string[])
 
     const options = [
-        { val: "😄", name: "Joy" },
+        { val: "😄", name: "Joyful" },
         { val: "🙂", name: "Good" },
         { val: "😐", name: "Neutral" },
         { val: "😔", name: "Sad" },
@@ -66,13 +66,13 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
 
     if (step === 0) {
         return (
-            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-4 w-[95vw] max-w-[95vw] relative' >
+            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-3 w-[95vw] max-w-[95vw] relative' >
                 <div className='font-bold text-xl ' >How are you feeling?</div>
                 <div className='flex items-center gap-3' >
                     <FaCalendarAlt size={16} />
                     <div className='underline text-teal-500 ' >{getTodayValue()}</div>
                 </div>
-                <div className='flex flex-wrap justify-center gap-2 mt-10' >
+                <div className='flex flex-wrap justify-center gap-2 mt-6' >
                     {options.map(p => {
                         const extraClasses = p.name === mood ? 'bg-slate-200' : ''
                         return (
