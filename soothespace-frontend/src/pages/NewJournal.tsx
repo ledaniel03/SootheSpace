@@ -8,8 +8,9 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
     const [mood, setMood] = useState('')
     const [actions, setActions] = useState([] as string[])
 
-    const options = [
-        { val: "😄", name: "Joyful" },
+    const options = [ 
+        // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
+        { val: "😄", name: "Happy" },
         { val: "🙂", name: "Good" },
         { val: "😐", name: "Neutral" },
         { val: "😔", name: "Sad" },
@@ -33,7 +34,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
     ];
     const getTodayValue = () => {
         const d = new Date()
-        const months = ['Jan', 'Feb', 'Mar', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         const month = months[d.getMonth()]
         const date = d.getDate()
         const hrs = d.getHours() % 12
@@ -66,7 +67,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
 
     if (step === 0) {
         return (
-            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-3 w-[95vw] max-w-[95vw] relative' >
+            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-3 w-[95vw] relative' >
                 <div className='font-bold text-xl ' >How are you feeling?</div>
                 <div className='flex items-center gap-3' >
                     <FaCalendarAlt size={16} />
@@ -74,10 +75,10 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
                 </div>
                 <div className='flex flex-wrap justify-center gap-2 mt-6' >
                     {options.map(p => {
-                        const extraClasses = p.name === mood ? 'bg-slate-200' : ''
+                        const extraClasses = p.name === mood ? 'bg-slate-200' : '' // if p.name === mood then set extraClasses = bg-slate-200
                         return (
                             <div className={'flex flex-col items-center hover:bg-slate-200 px-2 rounded-md cursor-pointer bg-slate ' + extraClasses}
-                                onClick={() => setMood(p.name)} >
+                                onClick={() => setMood(p.name)} > {/* State re-renders component */}
                                 <div className=' text-[2.1rem]' >{p.val}</div>
                                 <div className='text-slate-600 font-bold text-sm' >{p.name}</div>
                             </div>
@@ -91,7 +92,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
     }
     if (step === 1) {
         return (
-            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-2 max-w-[95vw] relative' >
+            <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-2 w-[95vw] relative' >
                 <div className='font-bold text-xl ' >What have u been up to?</div>
                 <div className='flex flex-wrap justify-center gap-4 mt-8' >
                     {options2.map(p => {
@@ -121,11 +122,11 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is t
     }
     if (step === 2) {
         return (
-            <div className='text-center bg-white py-10 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-7 h-[62.5vh] max-h[62.5vh] w-[100vw] max-w-[100vw] relative' >
+            <div className='text-center bg-white py-10 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-7 h-[62.5vh] w-[100vw] relative' >
                 <div className='font-bold text-xl ' >Anything To Share?</div>
                 <div className='flex flex-wrap justify-center gap-2' >
                     <textarea name="" id="" placeholder='Describe your day (optional) ... '
-                        className='border p-2 bg-slate-100 min-w-[90vw] min-h-[45vh] ' ></textarea>
+                        className='border p-2 bg-slate-100 w-[90vw] h-[45vh] ' ></textarea>
                 </div>
                 <FinishButton />
             </div>

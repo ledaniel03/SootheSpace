@@ -19,25 +19,25 @@ const BottomNav = () => {
         { name: 'Chat', url: '/chat', icon: IoIosChatbubbles },
         { name: 'New', url: '/', icon: IoAddCircleOutline }, // Placeholder for mood tracker or journal (if moving tabs for UX purposes)
         { name: 'Journal', url: '/journal', icon: FaJournalWhills },
-        { name: 'Tools', url: '/tools', icon: GrResources },
+        { name: 'Toolbox', url: '/toolbox', icon: GrResources },
     ]
 
     // OptionItem component for rendering each navigation option
     const OptionItem = ({ p }: { p: { name: string, url: string, icon: any } }) => {
         const Icon = p.icon  // Storing icon component for later use
         // Conditional class addition: add a background color if the current page is the option's target url
-        const extraClasses = p.url === location ? " bg-teal-500 " : "" // Give selected icon text a different color as well?
+        const extraClasses = p.url === location ? " bg-teal-500 " : "" // Give selected icon text a different color instead of highlight?
 
-        return (
-            <div className={`flex flex-col items-center pt-2 pb-6 px-1 my-0 rounded-sm cursor-pointer ${extraClasses}`}
+        return ( // Bottom nav icon & page name 
+            <div className={`flex flex-col items-center pt-2 pb-6 w-[20vw] px-1 my-0 rounded-sm cursor-pointer ${extraClasses}`} // Width 20% vw (5 components, no gap needed)
                 onClick={() => navigate(p.url)}> {/* Navigate to the option's target url on click */}
-                <Icon size={30} className='pt-0.5 text-white ' /> 
+                <Icon size={30} className='pt-0.5 text-white ' />
                 <div className='pt-0.5 font-bold text-white text-sm' >{p.name}</div> {/* Displaying the name of the route */}
             </div>
         )
     }
-    return (
-        <div className='bg-[#10a697] flex justify-center gap-9' >
+    return ( // Bottom nav page-names, passing page-names & rendering OptionItem component
+        <div className='bg-[#10a697] flex justify-center' >
             {options.map(p => <OptionItem key={p.name} p={p} />)} {/* Mapping over options to create an OptionItem for each */}
         </div>
     )

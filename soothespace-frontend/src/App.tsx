@@ -5,13 +5,13 @@ import BottomNav from './components/BottomNav'
 import Home from './pages/Home'
 import Chat from './pages/Chat'
 import Journal from './pages/Journal'
-import Tools from './pages/Tools'
+import Toolbox from './pages/Toolbox'
 
 function App() {
   const [homeMatch] = useRoute("/")
   const [chatMatch] = useRoute("/chat")
   const [journalMatch] = useRoute("/journal")
-  const [toolsMatch] = useRoute("/tools")
+  const [toolsMatch] = useRoute("/toolbox")
 
   const PAGE = (() => {
 
@@ -25,7 +25,7 @@ function App() {
       return <Journal />
     }
     if (toolsMatch) {
-      return <Tools />
+      return <Toolbox />
     }
     
 
