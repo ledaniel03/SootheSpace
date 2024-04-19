@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'journal',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +50,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+# Reference https://medium.com/@devsumitg/how-to-connect-reactjs-django-framework-c5ba268cb8be
+
+CORS_ORIGIN_ALLOW_ALL = True # Allows for all domains to make CORS requests to our django backend w/o restrictions (restrict to specific domains if needed w CORS_ALLOWED_ORIGINS)
+
 
 ROOT_URLCONF = 'soothespace_backend.urls'
 
