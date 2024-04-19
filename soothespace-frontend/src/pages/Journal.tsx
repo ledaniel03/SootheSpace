@@ -12,8 +12,8 @@ const Journal = () => {
     // History entry component to display journal entries (maybe use entry & index as props?) To pull from DB /array mapping & display, will need a TS interface
     const Entry = () => {
         return (
-            <div className="flex-1 flex-col font-medium rounded-s shadow-md my-2 bg-slate-0">
-                <div className="pl-20 text-white text-lg bg-teal-500">Today, Apr 17</div>
+            <div className="flex-1 flex-col font-medium rounded-md shadow-md my-2 bg-slate-0">
+                <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">Today, Apr 17</div>
 
                 <div className="flex flex-row text-teal-500 tracking-tight py-3"> 
                     <div className='flex flex-row font-normal text-5xl gap-3'>😄
