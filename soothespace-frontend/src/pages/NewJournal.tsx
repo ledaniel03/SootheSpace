@@ -3,7 +3,8 @@ import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, 
 import { MdFamilyRestroom } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 
-const NewJournal = ({ setOpen }: { setOpen: Function }) => {  // If setOpen is true, the popup will be visible & display each component depending on our step state.
+ // If setOpen (must be a function- useState counts) is false, the popup will be visible & display the component with our current step state.
+const NewJournal = ({ setOpen }: { setOpen: Function }) => { 
     const [step, setStep] = useState(0)
     const [mood, setMood] = useState('')
     const [actions, setActions] = useState([] as string[])

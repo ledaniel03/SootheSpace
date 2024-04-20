@@ -13,7 +13,7 @@ def get_entries(request):
             {
                 'id': entry.id,
                 'user': entry.user,
-                'time': entry.time,
+                'date': entry.date,
                 'mood': entry.mood,
                 'activity': entry.activity,
                 'val': entry.val,
@@ -35,7 +35,7 @@ def add_entry(request):
         # Create a new entry w request data
         new_entry = Entry(
             user = user,
-            time = data.get('time'),
+            date = data.get('date'),
             mood = data.get('mood'),
             activity = data.get('activity'),
             val = data.get('val'),

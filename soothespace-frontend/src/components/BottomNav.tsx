@@ -11,7 +11,7 @@ const BottomNav = () => {
     // Using the useLocation hook to get the current URL and a navigate function for changing pages
     const [location, navigate] = useLocation()
 
-    console.log(location)
+    //console.log(location)
 
     // Array defining the properties for each navigation option
     const options = [
