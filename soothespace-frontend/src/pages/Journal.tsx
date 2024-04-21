@@ -6,40 +6,27 @@ import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
 import NewJournal from './NewJournal';
 
-// Entry type alias to define the structure of a journal entry (TS syntax: Enforces all elements in Entry object to be of type specified)
-type EntryProps = { 
-    id: number, 
-    user: string, 
-    date: number, 
-    mood: string, 
-    activity: string,
-    val: string,
-    index: number
-}
 
 const Journal = () => {
     // Destructuring the usePopup hook to get the setOpen function and the component to display (passing props to NewJournal component)
     const { setOpen: setFormOpen, comp: newForm } = usePopup(<NewJournal setOpen={(e:boolean)=>setFormOpen(e)}/>) 
     const [entries, setEntries] = useState<EntryProps[]>([]) // State to hold journal entries [array of Entry objects] (TS syntax: Enforces all elements in entries array to conform of type Entry)
 
-    const options = [ 
-        // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
-        { val: "😄", name: "Happy" },
-        { val: "🙂", name: "Good" },
-        { val: "😐", name: "Neutral" },
-        { val: "😔", name: "Sad" },
-        { val: "😢", name: "Awful" },
-    ]
-
+    // Entry type alias to define the structure of a journal entry (TS syntax: Enforces all elements in Entry object to be of type specified)
+    type EntryProps = { 
+        id: number, 
+        user: string, 
+        date: number, 
+        mood: string, 
+        activity: string,
+        val: string,
+        index: number
+    }
+ 
     // Runs whenever component mounts and is re-rendered, empty array to only run once on component mount (tells what states to look for or props changes, then re-run the function if they change)
     useEffect(() => { 
         loadEntries(); 
     }, [])
-
-    const getEmoji = (mood: string) => {
-        const moodOption = options.find(option => option.name === mood);
-        return moodOption ? moodOption.val : "Mood not found";
-    };
 
     const loadEntries = async () => {
         try {
@@ -60,6 +47,21 @@ const Journal = () => {
        History entry component to display journal entries (maybe use entry & index as props?) To pull from DB /array mapping & display, will need a TS interface
     */
     const Entry = ({id, user, date, mood, activity, val}: EntryProps) => {
+        // Emoji options for mood
+        const options = [ 
+            // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
+            { val: "😄", name: "Happy" },
+            { val: "🙂", name: "Good" },
+            { val: "😐", name: "Neutral" },
+            { val: "😔", name: "Sad" },
+            { val: "😢", name: "Awful" },
+        ]
+
+        const getEmoji = (mood: string) => {
+            const moodOption = options.find(option => option.name === mood);
+            return moodOption ? moodOption.val : "Mood not found";
+        };
+
         return (
             <div className='flex-1 flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
                 <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{date}</div> {/* Date via db & convert format */}
@@ -83,7 +85,7 @@ const Journal = () => {
     }
 
     return (
-        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> {/* Journal root container (height 100vh else navbar pushed down & requires fixed-pos*/}
+        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> {/* Journal root container (height 90vh else navbar pushed down & requires fixed-pos*/}
             <HeaderRow title='Start Journaling'/> {/* Calling HeaderRow component w/ Title text & Icon (removed icon)*/}
             
             <div className='flex flex-col justify-center gap-4'>
