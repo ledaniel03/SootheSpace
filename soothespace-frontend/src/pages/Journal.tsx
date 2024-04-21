@@ -43,7 +43,7 @@ const Journal = () => {
 
     const loadEntries = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/journal/get_entries/'); // Adjusted the generic type to reflect the actual structure
+            const response = await axios.get('http://192.168.254.124:8000/journal/get_entries/'); // Change to actual API endpoint (via local server or network)
             if (Array.isArray(response.data.entries)) {
                 setEntries(response.data.entries); // Set entries state to the array part of the response data
             } else {
@@ -83,7 +83,7 @@ const Journal = () => {
     }
 
     return (
-        <div className='relative h-full flex flex-col bg-slate-50 pt-5 gap-5'>
+        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> {/* Journal root container (height 100vh else navbar pushed down & requires fixed-pos*/}
             <HeaderRow title='Start Journaling'/> {/* Calling HeaderRow component w/ Title text & Icon (removed icon)*/}
             
             <div className='flex flex-col justify-center gap-4'>
@@ -95,7 +95,7 @@ const Journal = () => {
                 </button>
             </div>
 
-            <div className='flex flex-col mt-8 mx-5 text-2xl font-bold max-h-[calc(100vh-120px)] text-black overflow-auto' >
+            <div className='flex flex-col mt-8 mx-5 text-2xl font-bold h-[55vh] text-black overflow-y-auto gap-1' > {/* Journal Entries container */}
                     Entries
                     {entries.map((entry, index) => 
                         <Entry id={entry.id} user={entry.user} date={entry.date} mood={entry.mood} activity={entry.activity} val={entry.val} index={index} /> // Mapping over entries array to create an Entry component for each entry stored in the state
