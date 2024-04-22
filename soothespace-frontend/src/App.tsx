@@ -37,11 +37,11 @@ function App() {
   })()
 
   return (
-    <div className='w-screen h-screen flex flex-col ' >
+    <div className='w-screen h-screen flex flex-col  ' >
       <div className='flex-1 '>
         {PAGE}
       </div>
-      <BottomNav />
+      <BottomNav /> {/* Bottom navigation bar, small white outline ontop can be fixed with its own div & its bg color (or position fixed) | Current div's are default white and give outline */}
     </div>
   )
 }
