@@ -12,7 +12,7 @@ const Toolbox = () => {
                 <div className="card-body gap-1">
                     <div className="font-semibold text-sm">Featured Tool</div>
                     <h2 className='card-title'>Mental Health Assessment</h2>
-                    <div className="card-actions justify-start m">
+                    <div className="card-actions justify-start">
                         <button className=' bg-emerald-400 hover:bg-emerald-500 text-slate-100 font-bold py-1 rounded-3xl w-4/12'> Try now </button>
                     </div>
                 </div>

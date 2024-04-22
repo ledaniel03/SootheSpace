@@ -17,7 +17,7 @@ const BottomNav = () => {
     const options = [
         { name: 'Home', url: '/', icon: GoHomeFill },
         { name: 'Chat', url: '/chat', icon: IoIosChatbubbles },
-        { name: 'New', url: '/', icon: IoAddCircleOutline }, // Placeholder for mood tracker or journal (if moving tabs for UX purposes)
+        { name: 'New', url: '/mood', icon: IoAddCircleOutline }, // Placeholder for mood tracker or journal (if moving tabs for UX purposes)
         { name: 'Journal', url: '/journal', icon: FaJournalWhills },
         { name: 'Toolbox', url: '/toolbox', icon: GrResources },
     ]
