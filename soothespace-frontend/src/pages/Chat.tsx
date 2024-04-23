@@ -1,6 +1,7 @@
 import React from 'react'
 import Avatar from "../components/Avatar"
 import { IoIosSend } from "react-icons/io";
+import { getCurrentDate } from '../utils/dateFormat';
 
 const Chat = () => {
 
@@ -22,11 +23,12 @@ const Chat = () => {
       );
     }
 
+  // Parent chat component
   return (
     <div className='relative flex flex-col h-full w-full bg-gradient-to-b from-teal-50 to-slate-50'> {/* Chat page root container & bg*/}
       <div className='flex flex-col items-center my-6 gap-2 text-sky-900'> {/* Chat header */}
-        <Avatar /> {/* Avatar component, later replace w logo */}
-        Thu Apr 25 2024
+        <Avatar /> {/* Avatar component, later replace w our logo */}
+          {getCurrentDate()} {/* util dateFormat function */}
       </div>
 
       {/* Messages container, grows/fills remaining space (max 68 vh)*/} {/* replace w fixed position if there's responsive issues on smaller phones (browser isn't accurate)*/}
