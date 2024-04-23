@@ -22,7 +22,7 @@ const Toolbox = () => {
 
     const Carousel = () => { // Add props for heading (ex: Positivity: [Item/link 1, Image, alt], [Item/link 2, Image, alt] )  || For demo, we can probably make this barebones & do without the backend API
         return (
-            <div className="flex flex-row h-fit w-[95vw] carousel ml-3 mb-5 gap-5"> {/* Carousel container (DaisyUI unstyled component) */}
+            <div className="flex flex-row h-fit w-[95vw] carousel ml-2 mb-5 gap-5"> {/* Carousel container (DaisyUI unstyled component) */}
                 <div className="carousel-item h-[15vh] w-[35vw]">
                     <img className= "w-full h-auto rounded-3xl" 
                     src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" 
