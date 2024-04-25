@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'journal',
     'chat',
+    #'moodtracker',
+    #'toolbox',
+    'users',
+
+
 ]
 
 MIDDLEWARE = [

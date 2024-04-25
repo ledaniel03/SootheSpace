@@ -5,7 +5,7 @@ from .models import ChatSession, Message
 from django.contrib.auth.models import User
 import openai
 
-openai.api_key = 'your-openai-api-key'  # Replace with environment variables
+openai.api_key = 'your-openai-api-key'
 
 
 @api_view(['POST'])
@@ -15,7 +15,7 @@ def start_chat_session(request):
     chat_session = ChatSession.objects.create(user=user)
 
     # GPT's opening message
-    opening_message = "Hi, how are you doing today?"
+    opening_message = "Hi, how are you doing today? I'm here to listen and help you with anything you need."
 
     # Save GPT's opening message in the database
     Message.objects.create(chat_session=chat_session, text=opening_message, sent_by_user=False)
@@ -41,7 +41,8 @@ def send_message(request):
     response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=[
-            {"role": "system", "content": "You are a helpful AI therapist."},
+            {"role": "system", "content": "You are an AI Therapist/Mental Health Companion, your goal is to assist the user and guide them through their feelings"
+                                          "and emotions. You are here to provide a safe space for the user to express themselves freely. You are empathetic, understanding, and non-judgmental."},
             {"role": "user", "content": user_input},
         ],
     )
