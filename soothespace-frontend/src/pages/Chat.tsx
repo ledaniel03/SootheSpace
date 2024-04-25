@@ -64,7 +64,7 @@ const Chat = () => {
       </div>
       <div className='flex h-[8vh] justify-center items-center my-1'>
         <div className='flex w-[90vw] h-[6vh] rounded-full border-2 border-teal-600 items-center justify-between'>
-            <input className='flex flex-grow ml-3 text-sky-900 bg-slate-50 placeholder-inherit ' type='text' id='small-input' placeholder='Write a message...'/>
+            <input className='flex flex-grow ml-3 text-sky-900 bg-slate-50 focus:outline-none placeholder-inherit ' type='text' id='small-input' placeholder='Write a message...'/>
             <button className='text-teal-600 hover:text-teal-700 text-4xl mr-5'> <IoIosSend/> </button>
         </div> 
       </div>

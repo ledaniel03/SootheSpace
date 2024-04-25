@@ -121,7 +121,8 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
             </div>
         )
     }
-    if (step === 2) {
+    // Integrate the addMessage function (which handles API) in this step using the 2 state's for data entry (utilize util date func. as well)
+    if (step === 2) { 
         return (
             <div className='text-center bg-white py-10 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-7 h-[62.5vh] w-[100vw] relative' >
                 <div className='font-bold text-xl ' >Anything To Share?</div>

@@ -5,11 +5,13 @@ import Home from './pages/Home'
 import Chat from './pages/Chat'
 import Journal from './pages/Journal'
 import Toolbox from './pages/Toolbox'
+import Mood from './pages/Mood'
 
 function App() { // Routing and rendering of pages (parent component to other pages, child to main.tsx)
   const [homeMatch] = useRoute("/")
   const [chatMatch] = useRoute("/chat")
   const [journalMatch] = useRoute("/journal")
+  const [moodMatch] = useRoute("/mood")
   const [toolsMatch] = useRoute("/toolbox")
 
   const PAGE = (() => {
@@ -22,6 +24,9 @@ function App() { // Routing and rendering of pages (parent component to other pa
     }
     if (journalMatch) {
       return <Journal />
+    }
+    if (moodMatch) {
+      return <Mood />
     }
     if (toolsMatch) {
       return <Toolbox />
