@@ -66,9 +66,11 @@ const Journal = () => {
         };
 
         return (
-            <div className='flex-1 flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
+            <div className='flex flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
+                {/* container for the entry's date*/}
                 <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{dateTime.date}</div> {/* Date via db & convert format */}
 
+                {/* container for the entry's mood, activity, and note*/}
                 <div className='flex flex-row text-teal-500 tracking-tight py-3'> 
                     <div className='flex flex-row font-normal text-5xl gap-3'> {getEmoji(mood)}
 
@@ -79,8 +81,9 @@ const Journal = () => {
                             </div>    
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>
-                        
-                        <div className='font-normal text-slate-400 text-sm mt-2 fixed right-12'> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
+                    </div>
+                    <div className='flex grow justify-end'>
+                        <div className='font-normal text-slate-400 text-sm mt-2 mr-6'> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
                     </div>
                 </div>
             </div>
