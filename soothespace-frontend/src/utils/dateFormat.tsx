@@ -11,14 +11,22 @@ export const getCurrentDate = (): string => {
     return `${day} ${month} ${dayNumber.toString()} ${year.toString()}`;
 }
 
+// Formatting the entries date & time for journal history
+export const formatDateTime = (isoString: string): { date: string; time: string } => {
+    const date = new Date(isoString);
 
-export const convertEntryDate = (): string => { // Add args needed for date conversion once API is set up
-    const d: Date = new Date(); 
-    let day: string = weekday[d.getDay()].slice(0, 3); 
-    let dayNumber: number = d.getDate() 
-    let month: string = d.toLocaleString('default', { month: 'long' }).slice(0, 3);
+    // Object to specify date formatting options (Utilizing JS predefined options for Intl.DateTimeFormatOptions)
+    const dateOptions: Intl.DateTimeFormatOptions = {
+        year: 'numeric',  // 'numeric' = display  year as a number
+        month: 'long',    // 'long' = display the full name of the month
+        day: 'numeric'    // 'numeric' = display the day as a number
+    };
 
-    return `${day}, ${month} ${dayNumber.toString()}`;
-}
+    const formattedDate = date.toLocaleDateString('en-US', dateOptions); // converts to local date format
+    const formattedTime = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); // converts to time date format (without the seconds & removing 0 in hrs if not 2-digit)
 
-// Write convertEntryTime function to convert time to 12-hour format
+    return {
+        date: formattedDate,
+        time: formattedTime
+    };
+};

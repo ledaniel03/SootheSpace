@@ -5,6 +5,7 @@ import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, 
 import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
 import NewJournal from './NewJournal';
+import { formatDateTime } from '../utils/dateFormat';
 
 
 const Journal = () => {
@@ -46,7 +47,9 @@ const Journal = () => {
        Need a entry component to display journal entries & a component to enlarge it when clicked (STRETCH)
        History entry component to display journal entries (maybe use entry & index as props?) To pull from DB /array mapping & display, will need a TS interface
     */
-    const Entry = ({id, user, date, mood, activity, val}: EntryProps) => {
+    const Entry = ({date, mood, activity, val}: EntryProps) => {
+        const dateTime = formatDateTime(date.toString()); // Convert date to readable format (via util function)
+        
         // Emoji options for mood
         const options = [ 
             // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
@@ -64,7 +67,7 @@ const Journal = () => {
 
         return (
             <div className='flex-1 flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
-                <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{date}</div> {/* Date via db & convert format */}
+                <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{dateTime.date}</div> {/* Date via db & convert format */}
 
                 <div className='flex flex-row text-teal-500 tracking-tight py-3'> 
                     <div className='flex flex-row font-normal text-5xl gap-3'> {getEmoji(mood)}
@@ -77,7 +80,7 @@ const Journal = () => {
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>
                         
-                        <div className='font-normal text-slate-400 text-sm mt-2'> {date} </div> {/* Time via db  (with date, just convert)*/}
+                        <div className='font-normal text-slate-400 text-sm mt-2 fixed right-12'> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
                     </div>
                 </div>
             </div>

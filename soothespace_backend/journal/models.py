@@ -1,10 +1,11 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Entry(models.Model):
     id = models.AutoField(primary_key=True) # auto incrementing primary key
-    user = models.CharField(max_length=16, default='')  # WILL be a foreign key to our inbuilt django user model
-    date = models.BigIntegerField(default=0) # Use serializer if setting time to DateTimeField & auto_now_add=True
+    user = models.CharField(max_length=16, default='')  # WILL be a foreign key to our inbuilt django user model (settings.AUTH_USER_MODEL)
+    date = models.DateTimeField(default=timezone.now) 
     mood = models.CharField(max_length=16, default='')
     activity = models.CharField(max_length=16, default='')
     val = models.TextField(max_length=2000, default='') # Journal entry
