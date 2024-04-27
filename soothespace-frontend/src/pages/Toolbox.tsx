@@ -8,7 +8,7 @@ const Toolbox = () => {
 
     const Featured = () => {
         return(
-            <div className="card h-[18vh] w-[90vw] bg-gradient-to-r from-emerald-200 to-teal-200 shadow-xl mb-6 text-slate-600">
+            <div className="flex-1 card h-[18vh] w-[90vw] bg-gradient-to-r from-emerald-200 to-teal-200 shadow-xl mb-6 text-slate-600">
                 <div className="card-body gap-1">
                     <div className="font-semibold text-sm">Featured Tool</div>
                     <h2 className='card-title'>Mental Health Assessment</h2>

@@ -45,7 +45,11 @@ function App() { // Routing and rendering of pages (parent component to other pa
       <div className='flex-1 '>
         {PAGE}
       </div>
-      <BottomNav /> {/* Bottom navigation bar, small white outline ontop can be fixed with its own div & its bg color (or position fixed) | Current div's are default white and give outline */}
+      
+    <div className='fixed bottom-0'>
+      <BottomNav />  
+      {/* Bottom navigation bar, small white outline ontop can be fixed with its own div & its bg color (or position fixed) | Current div's are default white and give outline */}
+    </div>
     </div>
   )
 }
