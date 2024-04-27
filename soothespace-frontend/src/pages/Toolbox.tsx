@@ -1,5 +1,6 @@
 import React from 'react'
 import { HeaderRow } from '../components/HeaderRow';
+import BreathingTool from './BreathingTool';
 
 // use carousel (DaisyUI) for tools
 // make a component for the carousel sections as we'll be reusing them
@@ -11,9 +12,9 @@ const Toolbox = () => {
             <div className="flex-1 card h-[18vh] w-[90vw] bg-gradient-to-r from-emerald-200 to-teal-200 shadow-xl mb-6 text-slate-600">
                 <div className="card-body gap-1">
                     <div className="font-semibold text-sm">Featured Tool</div>
-                    <h2 className='card-title'>Mental Health Assessment</h2>
+                    <h2 className='card-title'>Breathing for Stress</h2>
                     <div className="card-actions justify-start">
-                        <button className=' bg-emerald-400 hover:bg-emerald-500 text-slate-100 font-bold py-1 rounded-3xl w-4/12'> Try now </button>
+                        <BreathingTool/>
                     </div>
                 </div>
             </div>
@@ -66,6 +67,7 @@ const Toolbox = () => {
 
     
     return (
+        // Kept 90vh instead of full bc scrolling & previously bottom nav (before position-fixed)
         <div className='relative h-[90vh] flex flex-col bg-slate-50 pt-5 gap-5 flex-grow'>
             <HeaderRow title='Toolbox'/> 
             <div className='flex flex-col overflow-y-scroll'>
@@ -81,4 +83,4 @@ const Toolbox = () => {
     )
 }
 
-export default Toolbox
+export default Toolbox;

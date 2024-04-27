@@ -14,7 +14,7 @@ const Mood = () => {
     }
     
     return (
-        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> 
+        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-full'> 
             <HeaderRow title='Mood Tracker'/> 
             <div className='flex flex-col justify-center gap-4'>
                 <div className='text-black font-bold text-md font-sans ml-5'>Quick Start</div>

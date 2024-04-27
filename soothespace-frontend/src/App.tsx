@@ -54,4 +54,4 @@ function App() { // Routing and rendering of pages (parent component to other pa
   )
 }
 
-export default App
+export default App;

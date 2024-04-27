@@ -139,4 +139,4 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
     )
 }
 
-export default NewJournal
+export default NewJournal;

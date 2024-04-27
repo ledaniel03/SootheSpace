@@ -91,7 +91,8 @@ const Journal = () => {
     }
 
     return (
-        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> {/* Journal root container (height 90vh else navbar pushed down & requires fixed-pos*/}
+        // Changed navbar to position fixed, can set to 100vh or full now
+        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-full'> {/* Journal root container */} 
             <HeaderRow title='Start Journaling'/> {/* Calling HeaderRow component w/ Title text & Icon (removed icon)*/}
             
             <div className='flex flex-col justify-center gap-4'>
@@ -116,4 +117,4 @@ const Journal = () => {
     )
 }
 
-export default Journal
+export default Journal;
