@@ -5,6 +5,7 @@ import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, 
 import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
 import NewJournal from './NewJournal';
+import { formatDateTime } from '../utils/dateFormat';
 
 
 const Journal = () => {
@@ -46,7 +47,9 @@ const Journal = () => {
        Need a entry component to display journal entries & a component to enlarge it when clicked (STRETCH)
        History entry component to display journal entries (maybe use entry & index as props?) To pull from DB /array mapping & display, will need a TS interface
     */
-    const Entry = ({id, user, date, mood, activity, val}: EntryProps) => {
+    const Entry = ({date, mood, activity, val}: EntryProps) => {
+        const dateTime = formatDateTime(date.toString()); // Convert date to readable format (via util function)
+        
         // Emoji options for mood
         const options = [ 
             // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
@@ -63,9 +66,11 @@ const Journal = () => {
         };
 
         return (
-            <div className='flex-1 flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
-                <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{date}</div> {/* Date via db & convert format */}
+            <div className='flex flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
+                {/* container for the entry's date*/}
+                <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{dateTime.date}</div> {/* Date via db & convert format */}
 
+                {/* container for the entry's mood, activity, and note*/}
                 <div className='flex flex-row text-teal-500 tracking-tight py-3'> 
                     <div className='flex flex-row font-normal text-5xl gap-3'> {getEmoji(mood)}
 
@@ -76,8 +81,9 @@ const Journal = () => {
                             </div>    
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>
-                        
-                        <div className='font-normal text-slate-400 text-sm mt-2'> {date} </div> {/* Time via db  (with date, just convert)*/}
+                    </div>
+                    <div className='flex grow justify-end'>
+                        <div className='font-normal text-slate-400 text-sm mt-2 mr-6'> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
                     </div>
                 </div>
             </div>
@@ -85,7 +91,8 @@ const Journal = () => {
     }
 
     return (
-        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh]'> {/* Journal root container (height 90vh else navbar pushed down & requires fixed-pos*/}
+        // Changed navbar to position fixed, can set to 100vh or full now
+        <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-full'> {/* Journal root container */} 
             <HeaderRow title='Start Journaling'/> {/* Calling HeaderRow component w/ Title text & Icon (removed icon)*/}
             
             <div className='flex flex-col justify-center gap-4'>
@@ -110,4 +117,4 @@ const Journal = () => {
     )
 }
 
-export default Journal
+export default Journal;

@@ -9,7 +9,7 @@ def register(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         user = serializer.save()
-        token, created = Token.objects.get_or_create(user=user)
+        token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key}, status=201)
     else:
         return Response(serializer.errors, status=400)
@@ -19,8 +19,8 @@ def login(request):
     username = request.data.get('username')
     password = request.data.get('password')
     user = authenticate(username=username, password=password)
-    if user is not None:
-        token, created = Token.objects.get_or_create(user=user)
+    if user:
+        token, _ = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
     else:
         return Response({'error': 'Invalid Credentials'}, status=400)

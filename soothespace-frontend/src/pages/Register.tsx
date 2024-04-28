@@ -8,7 +8,7 @@ function Register() {
 
     const handleRegister = async () => {
         try {
-            const response = await axios.post('http://your-backend-url/auth/register/', {
+            const response = await axios.post('http://192.168.254.124:8000/accounts/register/', {
                 username,
                 email,
                 password

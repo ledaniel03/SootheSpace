@@ -7,7 +7,7 @@ function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://your-backend-url/auth/login/', {
+            const response = await axios.post('http://192.168.254.124:8000/accounts/login/', {
                 username,
                 password
             });
