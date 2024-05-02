@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Avatar from "../components/Avatar"
-import { IoIosSend } from "react-icons/io";
+import Avatar from '../components/Avatar'
+import { IoIosSend } from 'react-icons/io';
 import { getCurrentDate } from '../utils/dateFormat';
 import { addMessageToDB, getAllMessagesFromDB } from '../utils/db' // Import functions to interact with DB (API calls)
 
@@ -58,8 +58,8 @@ const Chat = () => {
   // Incoming message Component
   const IncomingMessage = ({ mes }: { mes: IChatMessage }) => { // Add props for fields- message content, sender, timestamp, etc.
     return (
-      <div className="chat chat-start">
-        <div className="chat-bubble text-white bg-sky-700">{mes.mes}</div>
+      <div className='chat chat-start'>
+        <div className='chat-bubble text-white bg-sky-700'>{mes.mes}</div>
       </div>
     );
   }
@@ -67,8 +67,8 @@ const Chat = () => {
   // Outgoing message Component
   const OutgoingMessage = ({ mes }: { mes: IChatMessage }) => { // Add props for fields- message content, sender, timestamp, etc.
     return (
-      <div className="chat chat-end">
-        <div className="chat-bubble text-white bg-teal-600">{mes.mes}</div>
+      <div className='chat chat-end'>
+        <div className='chat-bubble text-white bg-teal-600'>{mes.mes}</div>
       </div>
     );
   }
@@ -92,7 +92,7 @@ const Chat = () => {
             return <IncomingMessage mes={mes} /> /* Incoming Message component test/ for demo*/
           }
         })}
-        <div id="mes-end"></div> {/* Div to scroll to bottom of chat window */}
+        <div id='mes-end'></div> {/* Div to scroll to bottom of chat window */}
       </div>
       <div className='flex h-[8vh] justify-center items-center my-1'>
         <div className='flex w-[90vw] h-[6vh] rounded-full border-2 border-teal-600 items-center justify-between'>
