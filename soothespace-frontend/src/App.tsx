@@ -3,20 +3,17 @@ import BottomNav from './components/BottomNav'
 import Home from './pages/Home'
 import Chat from './pages/Chat'
 import Journal from './pages/Journal'
-import Toolbox from './pages/Toolbox'
-<<<<<<< HEAD
+import Meditation from './pages/Meditation'
+import Mood from './pages/Mood'
 import Login from './pages/Login'
 import Register from './pages/Register'
-=======
-import Mood from './pages/Mood'
->>>>>>> origin/main
 
 function App() { // Routing and rendering of pages (parent component to other pages, child to main.tsx)
   const [homeMatch] = useRoute("/")
   const [chatMatch] = useRoute("/chat")
   const [journalMatch] = useRoute("/journal")
   const [moodMatch] = useRoute("/mood")
-  const [toolsMatch] = useRoute("/toolbox")
+  const [meditationMatch] = useRoute("/meditation")
 
   // New routes for login and registration
   const [loginMatch] = useRoute("/login")
@@ -24,31 +21,13 @@ function App() { // Routing and rendering of pages (parent component to other pa
 
   const PAGE = (() => {
 
-<<<<<<< HEAD
     if (homeMatch) return <Home />;
     if (chatMatch) return <Chat />;
     if (journalMatch) return <Journal />;
-    if (toolsMatch) return <Toolbox />;
+    if (meditationMatch) return <Meditation />;
+    if (moodMatch) return <Mood />; 
     if (loginMatch) return <Login />; // Route for Login
     if (registerMatch) return <Register />; // Route for Register
-=======
-    if (homeMatch) {
-      return <Home />
-    }
-    if (chatMatch) {
-      return <Chat />
-    }
-    if (journalMatch) {
-      return <Journal />
-    }
-    if (moodMatch) {
-      return <Mood />
-    }
-    if (toolsMatch) {
-      return <Toolbox />
-    }
-    
->>>>>>> origin/main
 
     return (
       <div>

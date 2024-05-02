@@ -5,7 +5,7 @@ import BreathingTool from './BreathingTool';
 // use carousel (DaisyUI) for tools
 // make a component for the carousel sections as we'll be reusing them
 
-const Toolbox = () => {
+const Meditation = () => {
 
     const Featured = () => {
         return(
@@ -49,8 +49,8 @@ const Toolbox = () => {
         );
     }
 
-    const ToolPanel = () => {
-        const toolHeadings = ["Positivity", "Anxiety", "Sleep"]
+    const SoundsPanel = () => {
+        const toolHeadings = ["Nature", "Binural Beats", "Chime"]
 
         return (
             <div>
@@ -58,24 +58,22 @@ const Toolbox = () => {
                     <div key={index} className='flex flex-col text-slate-600 font-bold text-2xl font-sans ml-3 gap-4 '>
                         {heading}
                         <Carousel/> {/* Call w necessary props (just heading should be fine)*/}
-
                     </div>
                 ))}
             </div>
         );
     }
-
     
     return (
         // Kept 90vh instead of full bc scrolling & previously bottom nav (before position-fixed)
         <div className='relative h-[90vh] flex flex-col bg-slate-50 pt-5 gap-5 flex-grow'>
-            <HeaderRow title='Toolbox'/> 
+            <HeaderRow title='Meditation'/> 
             <div className='flex flex-col overflow-y-scroll'>
                 <div className='flex flex-col items-center '> 
                     <Featured/> 
                 </div>
                 <div className='flex flex-col'>
-                    <ToolPanel/>
+                    <SoundsPanel/>
                 </div>
             </div>
             
@@ -83,4 +81,4 @@ const Toolbox = () => {
     )
 }
 
-export default Toolbox;
+export default Meditation;

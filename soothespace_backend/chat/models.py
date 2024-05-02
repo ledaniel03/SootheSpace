@@ -16,4 +16,4 @@ class Message(models.Model):
 
     def __str__(self):
         sender = "User" if self.sent_by_user else "AI"
-        return f"Message {self.id} by {sender} - Session {self.chat_session.id}"
+        return f"Session {self.chat_session.id} Mes id {self.id} -{self.text} by {sender} - "

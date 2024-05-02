@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+from corsheaders.signals import check_request_enabled
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,8 @@ SECRET_KEY = 'django-insecure-7c*&njk8@p-f_g3^x&ueoal!f)polf7u!zxj^l9%)^*b+&qg!8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.254.124'] # Add the IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
+# Add the IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.254.124','localhost']
 
 
 # Application definition
@@ -38,20 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_framework.authtoken',
     'corsheaders',
     'journal',
     'chat',
+    # 'moodtracker',
+    # 'toolbox',
     'accounts',
+
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-    ],
-}
-
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,12 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 # Reference https://medium.com/@devsumitg/how-to-connect-reactjs-django-framework-c5ba268cb8be
-
-CORS_ORIGIN_ALLOW_ALL = True # Allows for all domains to make CORS requests to our django backend w/o restrictions (restrict to specific domains if needed w CORS_ALLOWED_ORIGINS)
 
 
 ROOT_URLCONF = 'soothespace_backend.urls'
@@ -139,3 +135,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# Allows for all domains to make CORS requests to our django backend w/o restrictions (restrict to specific domains if needed w CORS_ALLOWED_ORIGINS)
+CORS_ALLOW_ALL_ORIGINS = True
+#CSRF_TRUSTED_ORIGINS = ['chrome-extension://gmmkjpcadciiokjpikmkkmapphbmdjok','http://localhost:8000']

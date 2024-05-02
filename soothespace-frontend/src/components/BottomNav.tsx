@@ -3,7 +3,7 @@ import { GoHomeFill } from "react-icons/go";
 import { RiMentalHealthFill } from "react-icons/ri";
 import { IoIosChatbubbles,  } from "react-icons/io";
 import { FaJournalWhills } from "react-icons/fa";
-import { FaTools } from "react-icons/fa";
+import { GiMeditation } from "react-icons/gi";
 import { useLocation } from 'wouter';
 
 // Definition of the BottomNav functional component
@@ -19,7 +19,7 @@ const BottomNav = () => {
         { name: 'Chat', url: '/chat', icon: IoIosChatbubbles },
         { name: 'Journal', url: '/journal', icon: FaJournalWhills },
         { name: 'Mood', url: '/mood', icon: RiMentalHealthFill }, // Placeholder for mood tracker or journal (if moving tabs for UX purposes)
-        { name: 'Toolbox', url: '/toolbox', icon: FaTools },
+        { name: 'Unwind', url: '/meditation', icon: GiMeditation },
     ]
 
     // OptionItem component for rendering each navigation option

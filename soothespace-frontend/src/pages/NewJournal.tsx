@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, FaBook, FaBroom, FaBed, FaUtensils, FaShoppingBag } from 'react-icons/fa';
 import { MdFamilyRestroom } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
+import { addEntryToDB } from '../utils/db';
 
- // If setOpen (must be a function- useState counts) is false, the popup will be visible & display the component with our current step state.
-const NewJournal = ({ setOpen }: { setOpen: Function }) => { 
+// If setOpen (must be a function- useState counts) is false, the popup will be visible & display the component with our current step state.
+const NewJournal = ({ setOpen }: { setOpen: Function }) => {
     const [step, setStep] = useState(0)
     const [mood, setMood] = useState('')
     const [actions, setActions] = useState([] as string[])
+    const [desc, setDesc] = useState("")
 
-    const options = [ 
+    const options = [
         // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
         { val: "😄", name: "Happy" },
         { val: "🙂", name: "Good" },
@@ -46,6 +48,21 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
         const extra = d.getHours() > 12 ? "PM" : "AM"
         return `${month} ${date}, ${hrs}:${minutes} ${extra}`
     }
+
+    const addEntry = async () => {
+        const [state, data] = await addEntryToDB({
+            user: 'none',
+            date: (new Date()).getTime()/1000,
+            mood,
+            activity: desc,
+            val: desc
+        })
+        console.log(state, data)
+        if (state) {
+            setOpen(false)
+        }
+
+    }
     const NextButton = ({ active }: { active: boolean }) => {
         const extraNextClasses = !active ? ' bg-slate-200 ' : ' bg-teal-500 cursor-pointer '
         return (
@@ -58,9 +75,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
     const FinishButton = () => {
         return (
             <div className={'absolute bottom-2 right-2 px-2 py-1 rounded-xl font-bold text-white drop-shadow-sm   bg-teal-500 cursor-pointer '}
-                onClick={() => {
-                    setOpen(false)
-                }} >
+                onClick={addEntry} >
                 Save Journal
             </div>
         )
@@ -122,13 +137,14 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
         )
     }
     // Integrate the addMessage function (which handles API) in this step using the 2 state's for data entry (utilize util date func. as well)
-    if (step === 2) { 
+    if (step === 2) {
         return (
             <div className='text-center bg-white py-10 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-7 h-[62.5vh] w-[100vw] relative' >
                 <div className='font-bold text-xl ' >Anything To Share?</div>
                 <div className='flex flex-wrap justify-center gap-2' >
                     <textarea name="" id="" placeholder='Describe your day (optional) ... '
-                        className='border p-2 bg-slate-100 w-[90vw] h-[45vh] ' ></textarea>
+                        className='border p-2 bg-slate-100 w-[90vw] h-[45vh] '
+                        value={desc} onChange={e => setDesc(e.target.value)} ></textarea>
                 </div>
                 <FinishButton />
             </div>
