@@ -1,6 +1,5 @@
 import React from "react"
 import { HeaderRow } from '../components/HeaderRow';
-import newMood from './newMood';
 
 // separate file for the newMood component questions
 

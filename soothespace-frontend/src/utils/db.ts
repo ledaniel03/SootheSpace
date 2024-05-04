@@ -14,7 +14,7 @@ const fetchJson = async (path: string, method: string = 'GET', body?: object, he
         // Extract text from the response
         const text = await res.text()
         console.log('Got', text)
-        
+
         // Parse text to JSON
         const data = JSON.parse(text)
         return [true, data] // Successful fetch
@@ -56,7 +56,7 @@ export const addEntryToDB = async (message: {
     }
 }
 
-export const getAllEntriesFromDB=async()=>{
+export const getAllEntriesFromDB = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/journal/get_entries/`); // Change to actual API endpoint (via local server or network)
         if (Array.isArray(response.data.entries)) {
@@ -69,3 +69,37 @@ export const getAllEntriesFromDB=async()=>{
         console.error('Failed to fetch entries:', error);
     }
 }
+
+// ACCOUNT ACTIONS
+
+export const addUserToDB = async (message: { username: string, password: string }) => {
+    const [status, data] = await fetchJson(`/accounts/register/`, "POST", message)
+    if (status && data['success']) {
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}
+
+
+export const loginUserDB = async (message: { username: string, password: string }) => {
+    const [status, data] = await fetchJson(`/accounts/login/`, "POST", message)
+    if (status && data['success']) {
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}
+
+export const logoutUserDB = async () => {
+    const [status, data] = await fetchJson(`/accounts/logout/`, "POST", {})
+    if (status && data['success']) {
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}
+
+
+
+

@@ -1,28 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useLocation } from 'wouter';
+import { addUserToDB } from '../utils/db';
 
-function Register() {
+function Login() {
     const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [password2, setPassword2] = useState('');
+    const [info, setInfo] = useState('');
+    const [location, setLocation] = useLocation()
 
-    const handleRegister = async () => {
-        try {
-            const response = await axios.post('http://192.168.254.124:8000/accounts/register/', {
-                username,
-                email,
-                password
-            });
-            localStorage.setItem('token', response.data.token);
-            console.log('Registration successful:', response.data);
-            // Redirect or handle registration success
-        } catch (error) {
-            console.error('Registration failed:', error);
+    const handleLogin = async () => {
+        if (username.length < 3 || password.length < 3) {
+            setInfo("Fill all details")
+            return
+        }
+        if (password != password2) {
+            setInfo("Passwords do not match")
+            return
+        }
+        const [status, loginInfo] = await addUserToDB({ username, password })
+        if (status && loginInfo) {
+            setLocation("/")
+        } else {
+            setInfo(loginInfo)
         }
     };
 
     return (
-        <div>
+        <div className="flex flex-col max-w-[60%] items-center mx-auto my-[20%] gap-4 [&>*]:px-4 [&>input]:text-xl  " >
+            <h2 className='text-white font-bold underline mb-2 text-xl ' >Signup from Soothespace</h2>
             <input
                 type="text"
                 value={username}
@@ -30,20 +37,22 @@ function Register() {
                 placeholder="Username"
             />
             <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-            />
-            <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
             />
-            <button onClick={handleRegister}>Register</button>
+            <input
+                type="password"
+                value={password2}
+                onChange={(e) => setPassword2(e.target.value)}
+                placeholder="Password again... "
+            />
+            <a className='text-sm text-white ' >login instead?</a>
+            <div className='text-red-500' >{info}</div>
+            <button onClick={handleLogin} className='bg-blue-500 w-fit ' >Signup</button>
         </div>
     );
 }
 
-export default Register;
+export default Login;

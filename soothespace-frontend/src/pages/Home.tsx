@@ -1,5 +1,6 @@
 import React from "react";
 import { HeaderRow } from "../components/HeaderRow";
+import LogoutButton  from "../components/LogoutButton";
 
 const Home = () => {
   return (
@@ -8,6 +9,8 @@ const Home = () => {
       <div className="flex flex-col justify-center gap-4">
                 <div className="text-black font-bold text-md font-sans ml-5">Insights</div>
       </div>
+      <LogoutButton />
+
 
 
 
