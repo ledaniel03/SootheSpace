@@ -19,7 +19,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('journal/', include('journal.urls')),
-    path('chat/',include('chat.urls')),
+    path('chat/', include('chat.urls')),
     path('accounts/', include('accounts.urls')),
+    path('user-settings/', include('user_settings.urls')),  # Add the user settings URLs
     path('admin/', admin.site.urls),
 ]
