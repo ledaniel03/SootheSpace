@@ -4,9 +4,10 @@ import { RiTodoFill } from "react-icons/ri";
 import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, FaBook, FaBroom, FaBed, FaUtensils, FaShoppingBag, FaFontAwesome } from 'react-icons/fa';
 import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
-import NewJournal from './NewJournal';
+import NewJournal, { getActionIcon } from './NewJournal';
 import { formatDateTime } from '../utils/dateFormat';
 import { getAllEntriesFromDB } from '../utils/db'; // moved getAllEntriesFromDB to db.ts
+import { IconType } from 'react-icons';
 
 
 // Entry interface to define the structure of a journal entry (TS syntax: Enforces all elements in Entry object to be of type specified)
@@ -19,6 +20,24 @@ interface IEntry {
     val: string,
     index: number
 }
+// Emoji options for mood
+const options = [
+    // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
+    { val: "😄", name: "Happy" },
+    { val: "🙂", name: "Good" },
+    { val: "😐", name: "Neutral" },
+    { val: "😔", name: "Sad" },
+    { val: "😢", name: "Awful" },
+]
+
+
+export const getEmoji = (mood: string) => {
+    const moodOption = options.find(option => option.name === mood);
+    return moodOption ? moodOption.val : "Mood not found";
+};
+
+export const findEmojiByMood = getEmoji
+
 const Journal = () => {
     // Destructuring the usePopup hook to get the setOpen function and the component to display (passing props to NewJournal component)
     const { setOpen: setFormOpen, comp: newForm } = usePopup(<NewJournal setOpen={(e: boolean) => setFormOpen(e)} />)
@@ -41,22 +60,21 @@ const Journal = () => {
     */
     const Entry = ({ date, mood, activity, val }: IEntry) => {
         const dateTime = formatDateTime(date.toString()); // Convert date to readable format (via util function)
-
-        // Emoji options for mood
-        const options = [
-            // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
-            { val: "😄", name: "Happy" },
-            { val: "🙂", name: "Good" },
-            { val: "😐", name: "Neutral" },
-            { val: "😔", name: "Sad" },
-            { val: "😢", name: "Awful" },
-        ]
-
-        const getEmoji = (mood: string) => {
-            const moodOption = options.find(option => option.name === mood);
-            return moodOption ? moodOption.val : "Mood not found";
-        };
-
+        const activities = (() => {
+            const actions = activity.split(',')
+            const data = [] as [IconType, string][]
+            for (const act of actions) {
+                const icon = getActionIcon(act)
+                data.push([icon, act])
+            }
+            return data.map(d => {
+                const Icon = d[0]
+                return (<div  className='flex gap-1' >
+                    <Icon className='w-4 h-4 ' />
+                    <div >{d[1]}</div>
+                </div>)
+            })
+        })()
         return (
             <div className='flex flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
                 {/* container for the entry's date*/}
@@ -68,8 +86,8 @@ const Journal = () => {
 
                         <div className='flex flex-col justify-start font-normal text-2xl'> {/* Mood entry via db */}
                             {mood}
-                            <div className='flex flex-row font-normal text-sm gap-2'>
-                                <FaDumbbell className='mt-1' />  <span className='text-slate-400'>{activity}</span> {/* Activity entry via db */}
+                            <div className='flex flex-row flex-wrap font-normal text-sm gap-2'>
+                               {...activities}
                             </div>
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>
@@ -81,7 +99,7 @@ const Journal = () => {
             </div>
         );
     }
-console.log(entries)
+    console.log(entries)
     return (
         // Changed navbar to position fixed, can set to 100vh or full now
         <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-full'> {/* Journal root container */}

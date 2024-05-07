@@ -1,9 +1,14 @@
 import React from 'react'
 import { logoutUserDB } from '../utils/db'
+import { useLocation } from 'wouter'
 
 const LogoutButton = () => {
+    const [, navigate] = useLocation()
     const handleLogout = async () => {
-        await logoutUserDB()
+        const [res, state] = await logoutUserDB()
+        if (res && state) {
+            navigate('/login')
+        }
     }
     return (
         <div className='fixed top-2 right-2'>

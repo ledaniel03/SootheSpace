@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = 'http://192.168.254.124:8000/' // Base URL for chatAPI
+const BASE_URL = 'http://localhost:8000' // Base URL for API requests (chat & other methods in db.ts)
 
 // Async function to fetch JSON data from server- Parameters for path, method, body & headers
 const fetchJson = async (path: string, method: string = 'GET', body?: object, headers?: HeadersInit): Promise<[boolean, any]> => {
@@ -75,6 +75,7 @@ export const getAllEntriesFromDB = async () => {
 export const addUserToDB = async (message: { username: string, password: string }) => {
     const [status, data] = await fetchJson(`/accounts/register/`, "POST", message)
     if (status && data['success']) {
+        saveUserDetails(message.username, message.password)
         return [true, true]
     } else {
         return [false, data['error']]
@@ -85,21 +86,39 @@ export const addUserToDB = async (message: { username: string, password: string 
 export const loginUserDB = async (message: { username: string, password: string }) => {
     const [status, data] = await fetchJson(`/accounts/login/`, "POST", message)
     if (status && data['success']) {
+        saveUserDetails(message.username, message.password)
         return [true, true]
     } else {
         return [false, data['error']]
     }
 }
 
+
 export const logoutUserDB = async () => {
-    const [status, data] = await fetchJson(`/accounts/logout/`, "POST", {})
+    const [status, data] = await fetchJson(`/accounts/logout/`, "POST", {
+        "username": localStorage.getItem('username'),
+    })
+    if (status && data['success']) {
+        saveUserDetails("", "")
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}
+
+const saveUserDetails = (name: string, password: string) => {
+    localStorage.setItem('username', name)
+    // localStorage.setItem('password', password)
+}
+
+export const checkLogin = async () => {
+    const [status, data] = await fetchJson(`/accounts/checklogin/`, "POST", {
+        "username": localStorage.getItem('username'),
+    })
     if (status && data['success']) {
         return [true, true]
     } else {
         return [false, data['error']]
     }
 }
-
-
-
 

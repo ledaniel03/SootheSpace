@@ -7,8 +7,9 @@ import { addMessageToDB, getAllMessagesFromDB } from '../utils/db' // Import fun
 interface IChatMessage { mes: string, type: 'in' | 'out', time: number }
 const Chat = () => {
   const [mes, setMes] = useState('')   // contains typed message
-  const [sessionId, setSessionId]=useState(1) // session id for chat
+  const [sessionId, setSessionId] = useState(1) // session id for chat
   const [message, setMessages] = useState([] as IChatMessage[])
+  const [sending, setSending] = useState(false)
 
   // on mount hook, to load messages
   useEffect(() => {
@@ -31,15 +32,18 @@ const Chat = () => {
   }
 
   const sendMessage = async () => {
+    if (sending) return
     if (mes.length < 3) {
       alert('Message too short!')
       return
     }
+    setSending(true)
     const res = await addMessageToDB(mes, 1)
     if (res) {
       reloadMessages()
     }
     console.log('result', res)
+    setSending(false)
   }
 
   const reloadMessages = async () => {
@@ -49,7 +53,7 @@ const Chat = () => {
       return
     }
     console.log(data)
-    if(Array.isArray(data)){
+    if (Array.isArray(data)) {
       setMessages(data as IChatMessage[])
     }
     scrollToBottom()
@@ -86,7 +90,7 @@ const Chat = () => {
       <div className='flex flex-col flex-grow max-h-[calc(100vh-6vh-230px)] overflow-y-auto gap-4'>
         {message.map(mes => {
           // Check if message is incoming or outgoing (for styling & alignment)
-          if (mes.type === 'in') { 
+          if (mes.type === 'in') {
             return <OutgoingMessage mes={mes} /> /* Outgoing Message component test/ for demo*/
           } else {
             return <IncomingMessage mes={mes} /> /* Incoming Message component test/ for demo*/
@@ -98,7 +102,7 @@ const Chat = () => {
         <div className='flex w-[90vw] h-[6vh] rounded-full border-2 border-teal-600 items-center justify-between'>
           <input className='flex flex-grow ml-3 text-sky-900 bg-slate-50 focus:outline-none placeholder-inherit ' type='text' id='small-input' placeholder='Write a message...'
             value={mes} onChange={e => setMes(e.target.value)} />
-          <button className='text-teal-600 hover:text-teal-700 text-4xl mr-5'
+          <button className={`${!sending ? 'text-teal-600 hover:text-teal-700' : "text-gray-200 cursor-default"} text-4xl mr-5`}
             onClick={sendMessage}> <IoIosSend /> </button>
         </div>
       </div>

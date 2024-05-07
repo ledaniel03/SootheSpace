@@ -4,12 +4,38 @@ import { MdFamilyRestroom } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { addEntryToDB } from '../utils/db';
 
+const options2 = [
+    { icon: MdFamilyRestroom, name: "Family" },
+    { icon: FaUserFriends, name: "Friends" },
+    { icon: FaCalendarAlt, name: "Date" },
+    { icon: FaDumbbell, name: "Exercise" },
+    { icon: FaFootballBall, name: "Sports" },
+    { icon: FaCouch, name: "Relax" },
+    { icon: FaFilm, name: "Movies" },
+    { icon: FaGamepad, name: "Gaming" },
+    { icon: FaBook, name: "Reading" },
+    { icon: FaBroom, name: "Cleaning" },
+    { icon: FaBed, name: "Resting" },
+    { icon: FaUtensils, name: "Health" },
+    { icon: FaShoppingBag, name: "Shopping" },
+];
+
+export const getActionIcon = (name: string) => {
+    const res = options2.find(p => p.name == name)
+    if (res) {
+        return res.icon
+    } else {
+        return MdFamilyRestroom
+    }
+}
+
 // If setOpen (must be a function- useState counts) is false, the popup will be visible & display the component with our current step state.
 const NewJournal = ({ setOpen }: { setOpen: Function }) => {
     const [step, setStep] = useState(0)
     const [mood, setMood] = useState('')
     const [actions, setActions] = useState([] as string[])
     const [desc, setDesc] = useState("")
+    const [info, setInfo] = useState("")
 
     const options = [
         // Each object element in array includes both val & name properties on same line (not inherently linked tho) (State's & conditional to link)
@@ -20,21 +46,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
         { val: "😢", name: "Awful" },
     ]
 
-    const options2 = [
-        { icon: MdFamilyRestroom, name: "Family" },
-        { icon: FaUserFriends, name: "Friends" },
-        { icon: FaCalendarAlt, name: "Date" },
-        { icon: FaDumbbell, name: "Exercise" },
-        { icon: FaFootballBall, name: "Sports" },
-        { icon: FaCouch, name: "Relax" },
-        { icon: FaFilm, name: "Movies" },
-        { icon: FaGamepad, name: "Gaming" },
-        { icon: FaBook, name: "Reading" },
-        { icon: FaBroom, name: "Cleaning" },
-        { icon: FaBed, name: "Resting" },
-        { icon: FaUtensils, name: "Health" },
-        { icon: FaShoppingBag, name: "Shopping" },
-    ];
+
     const getTodayValue = () => {
         const d = new Date()
         const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -51,10 +63,10 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
 
     const addEntry = async () => {
         const [state, data] = await addEntryToDB({
-            user: 'none',
-            date: (new Date()).getTime()/1000,
+            user: localStorage.getItem('username') || 'none',
+            date: (new Date()).getTime() / 1000,
             mood,
-            activity: desc,
+            activity: actions.join(','),
             val: desc
         })
         console.log(state, data)
@@ -138,14 +150,23 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
     }
     // Integrate the addMessage function (which handles API) in this step using the 2 state's for data entry (utilize util date func. as well)
     if (step === 2) {
+        const updateDesc = (newDesc: string) => {
+            if (newDesc.length > 150) {
+                setInfo('Max of 150 characters')
+            } else {
+                setInfo("")
+                setDesc(newDesc)
+            }
+        }
         return (
             <div className='text-center bg-white py-10 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-7 h-[62.5vh] w-[100vw] relative' >
                 <div className='font-bold text-xl ' >Anything To Share?</div>
                 <div className='flex flex-wrap justify-center gap-2' >
-                    <textarea name="" id="" placeholder='Describe your day (optional) ... '
-                        className='border p-2 bg-slate-100 w-[90vw] h-[45vh] '
-                        value={desc} onChange={e => setDesc(e.target.value)} ></textarea>
+                    <textarea name="" id="" placeholder='Describe your day MAX 150 Chars (optional) ... '
+                        className='border p-2 bg-slate-100 w-[90vw] h-[40vh] '
+                        value={desc} onChange={e => updateDesc(e.target.value)} ></textarea>
                 </div>
+                <div className='text-red-600 text-sm mt-[-10px]' >{info}</div>
                 <FinishButton />
             </div>
         )

@@ -18,7 +18,7 @@ const Mood = () => {
                 <Calendar/>
             </div>        
 
-            <div className='text-black font-bold text-md font-sans ml-5'>Insights</div>
+            {/* <div className='text-black font-bold text-md font-sans ml-5'>Insights</div> */}
                 {/* Chart component displaying data*/}
 
         </div>

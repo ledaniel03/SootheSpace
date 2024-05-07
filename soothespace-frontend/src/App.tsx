@@ -7,6 +7,7 @@ import Meditation from './pages/Meditation'
 import Mood from './pages/Mood'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import { useLogin } from './hooks/useLogin'
 
 function App() { // Routing and rendering of pages (parent component to other pages, child to main.tsx)
   const [homeMatch] = useRoute("/")
@@ -19,13 +20,17 @@ function App() { // Routing and rendering of pages (parent component to other pa
   const [loginMatch] = useRoute("/login")
   const [registerMatch] = useRoute("/register")
 
+  const { isLoggedin } = useLogin()
+  
   const PAGE = (() => {
-
+    if (!isLoggedin && !(registerMatch || loginMatch)) {
+      return <Login />
+    }
     if (homeMatch) return <Home />;
     if (chatMatch) return <Chat />;
     if (journalMatch) return <Journal />;
     if (meditationMatch) return <Meditation />;
-    if (moodMatch) return <Mood />; 
+    if (moodMatch) return <Mood />;
     if (loginMatch) return <Login />; // Route for Login
     if (registerMatch) return <Register />; // Route for Register
 
@@ -41,11 +46,11 @@ function App() { // Routing and rendering of pages (parent component to other pa
       <div className='flex-1 '>
         {PAGE}
       </div>
-      
-    <div className='fixed bottom-0'>
-      <BottomNav />  
-      {/* Bottom navigation bar, small white outline ontop can be fixed with its own div & its bg color (or position fixed) | Current div's are default white and give outline */}
-    </div>
+
+      <div className='fixed bottom-0'>
+        <BottomNav />
+        {/* Bottom navigation bar, small white outline ontop can be fixed with its own div & its bg color (or position fixed) | Current div's are default white and give outline */}
+      </div>
     </div>
   )
 }
