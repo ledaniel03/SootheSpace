@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'journal',
     'chat',
+    'breathing_tools',
     'user_settings',
     'accounts',
 

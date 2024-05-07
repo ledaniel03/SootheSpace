@@ -21,6 +21,7 @@ urlpatterns = [
     path('journal/', include('journal.urls')),
     path('chat/', include('chat.urls')),
     path('accounts/', include('accounts.urls')),
-    path('user-settings/', include('user_settings.urls')),  # Add the user settings URLs
+    path('user-settings/', include('user_settings.urls')),
+    path('breathing-tools/', include('breathing_tools.urls')),  # Include the breathing tools app URLs
     path('admin/', admin.site.urls),
 ]
