@@ -25,7 +25,7 @@ const fetchJson = async (path: string, method: string = 'GET', body?: object, he
 }
 
 export const addMessageToDB = async (mes: string, session_id: number) => {
-    const message = { session_id, input: mes }
+    const message = { session_id, input: mes, username: localStorage['username'] }
     const [res, data] = await fetchJson('/chat/send_message/', "POST", message)
     return res
 }
@@ -33,7 +33,18 @@ export const addMessageToDB = async (mes: string, session_id: number) => {
 export const getAllMessagesFromDB = async (session_id: number) => {
     const [status, data] = await fetchJson(`/chat/get_messages/${session_id}/`)
     if (status) {
-        return [true, data.messages as object[]]
+        let mes = data.messages as any[]
+        let foundMes = []
+        for (let i = 0; i < mes.length; i++) {
+            if (mes[i].username == localStorage['username']) {
+                foundMes.push(mes[i]) // add message and respond to users messages
+                foundMes.push(mes[i + 1])
+            }
+        }
+        return [
+            true,
+            foundMes,
+        ]
     } else {
         return [false, []]
     }
@@ -60,7 +71,12 @@ export const getAllEntriesFromDB = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/journal/get_entries/`); // Change to actual API endpoint (via local server or network)
         if (Array.isArray(response.data.entries)) {
-            return response.data.entries.reverse(); // Set entries state to the array part of the response data (reversed to show newest on top)
+            let entries = response.data.entries.reverse()
+            const name = localStorage['username']
+            entries = entries.filter(
+                (d: any) => d.user == name
+            )
+            return entries; // Set entries state to the array part of the response data (reversed to show newest on top)
         } else {
             console.error('Data fetched is not an array:', response.data.entries);
             return []; // Set to empty array if fetched data is not an array

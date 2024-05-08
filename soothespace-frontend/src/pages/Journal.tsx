@@ -39,14 +39,15 @@ export const getEmoji = (mood: string) => {
 export const findEmojiByMood = getEmoji
 
 const Journal = () => {
+    const [updates, refreshJornal] = useState(0)
     // Destructuring the usePopup hook to get the setOpen function and the component to display (passing props to NewJournal component)
-    const { setOpen: setFormOpen, comp: newForm } = usePopup(<NewJournal setOpen={(e: boolean) => setFormOpen(e)} />)
+    const { setOpen: setFormOpen, comp: newForm } = usePopup(<NewJournal setOpen={(e: boolean) => { setFormOpen(e); refreshJornal(e => e + 1) }} />)
     const [entries, setEntries] = useState([] as IEntry[]) // State to hold journal entries [array of Entry objects] (TS syntax: Enforces all elements in entries array to conform of type Entry)
 
     // Runs whenever component mounts and is re-rendered, empty array to only run once on component mount (tells what states to look for or props changes, then re-run the function if they change)
     useEffect(() => {
         loadEntries();
-    }, [])
+    }, [updates])
 
     const loadEntries = async () => {
         const newEntries = await getAllEntriesFromDB()
@@ -69,7 +70,7 @@ const Journal = () => {
             }
             return data.map(d => {
                 const Icon = d[0]
-                return (<div  className='flex gap-1' >
+                return (<div className='flex gap-1' >
                     <Icon className='w-4 h-4 ' />
                     <div >{d[1]}</div>
                 </div>)
@@ -87,7 +88,7 @@ const Journal = () => {
                         <div className='flex flex-col justify-start font-normal text-2xl'> {/* Mood entry via db */}
                             {mood}
                             <div className='flex flex-row flex-wrap font-normal text-sm gap-2'>
-                               {...activities}
+                                {...activities}
                             </div>
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>

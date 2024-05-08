@@ -17,7 +17,8 @@ API_KEY = 'sk-proj-LyK8AZ2oTESTpi6ztjOHT3BlbkFJtOmlb5I9aKffmhC4EDk1'
 @api_view(['POST'])
 def start_chat_session(request):
     # Create a new chat session
-    user = request.user if request.user.is_authenticated else User.objects.get( username='root') # default user to pull msgs from
+    user = request.user if request.user.is_authenticated else User.objects.get(
+        username='root')  # default user to pull msgs from
     chat_session = ChatSession.objects.create(user=user)
 
     # GPT's opening message
@@ -37,6 +38,7 @@ def send_message(request):
         data = json.loads(request.body.decode('utf-8'))
         session_id = data.get("session_id")
         user_input = data.get("input")
+        username = data.get("username")
     except json.JSONDecodeError:
         return JsonResponse({"error": "Invalid JSON data"}, status=400)
 
@@ -47,7 +49,7 @@ def send_message(request):
 
     # Save user message to database
     Message.objects.create(chat_session=chat_session,
-                           text=user_input, sent_by_user=True)
+                           text=user_input, sent_by_user=True, username=username)
 
     # Here, incorporate the logic for OpenAI API call with role="assistant" and preset personality
     try:
@@ -88,7 +90,8 @@ def get_messages(request, session_id):
     messages = [{
         "type": "in" if mes.sent_by_user else "out",
         "mes": mes.text,
-        "time": 0
+        "time": 0,
+        "username": mes.username,
     }
         for mes in messages]
 

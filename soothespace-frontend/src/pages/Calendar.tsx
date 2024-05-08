@@ -21,25 +21,36 @@ const Calendar: React.FC = () => {
     useEffect(() => {
         (async () => {
             const entries = await getAllEntriesFromDB()
-            console.log(entries)
+            // console.log(entries)
             setEntries(entries)
         })()
     }, [])
     // Function to generate an array of days for the current month
-    const getDaysArray = (year: number, month: number): Day[] => {
-        const monthIndex = month - 1; // Converts 1-based month to 0-based for the Date object
+    const getDaysArray = (year: number, month: number) => {
+        const monthIndex = month; // Converts 1-based month to 0-based for the Date object
         const date = new Date(year, monthIndex, 1); // Starts at the first day of the month
-        const result: Day[] = [];
+        const result: { day: number, dayOfWeek: string }[] = [];
+        const startIndex = date.getDay()
         while (date.getMonth() === monthIndex) {
             // Pushes each day and its corresponding weekday name to the result array
             result.push({ day: date.getDate(), dayOfWeek: weekdays[date.getDay()] });
             date.setDate(date.getDate() + 1); // Moves to the next day
         }
-        return result;
+        const grid = [...new Array(35)].map(a => -1)
+        // console.log(grid, startIndex)
+
+        for (const res of result) {
+            const pos = res.day + startIndex - 1
+            grid[pos % 35] = res.day
+        }
+        // console.log(grid)
+
+        return grid;
     };
 
     // Generates array of days for the current month & year
-    const days: Day[] = getDaysArray(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    // const days: Day[] = getDaysArray(currentDate.getFullYear(), currentDate.getMonth() + 1);
+    const grid = getDaysArray(currentDate.getFullYear(), currentDate.getMonth())
 
     // Function to move the calendar to the next month
     const nextMonth = (): void => {
@@ -51,8 +62,8 @@ const Calendar: React.FC = () => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1));
     };
 
-    const getEmoji = (date: number) => {
-
+    const getEmoji = (date: number, index: number) => {
+        if (date == -1) return <div></div>  
         for (const entry of entries) {
             const d = new Date(entry['date'])
             if (d.getFullYear() == currentDate.getFullYear() &&
@@ -66,7 +77,7 @@ const Calendar: React.FC = () => {
                     </div>)
             }
         }
-        return (<div key={date} className="px-4 py-3 text-center text-slate-500 border rounded-full border-gray-300
+        return (<div key={date + index} className="px-4 py-3 text-center text-slate-500 border rounded-full border-gray-300
         ">
             {date}
         </div>)
@@ -86,7 +97,7 @@ const Calendar: React.FC = () => {
                         {day}
                     </div>
                 ))}
-                {days.map((day, index) => getEmoji(day.day))}
+                {grid.map((day, index) => getEmoji(day, index))}
             </div>
         </div>
     );

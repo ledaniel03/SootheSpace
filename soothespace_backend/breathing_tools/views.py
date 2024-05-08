@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .models import MeditationVideo
 from .serializers import MeditationVideoSerializer
-from soothespace_backend.user_settings.models import UserProfile  # Correct import based on your project structure
+from user_settings.models import UserProfile  # Correct import based on your project structure (Don't need the Soothespace_backend)
 
 class MeditationVideoList(generics.ListAPIView):
     serializer_class = MeditationVideoSerializer

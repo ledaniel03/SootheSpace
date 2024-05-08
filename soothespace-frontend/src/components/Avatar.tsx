@@ -1,10 +1,10 @@
 import { RxAvatar } from "react-icons/rx";
-import avatarImg from '../assets/avatar.png'
+import sootheSpace from '../assets/soothespace_logo.png'
 
 const Avatar = () => {
     return (
         <div className="flex flex-col items-center px-3 mb-2" >
-            <img src={avatarImg} className="w-8" />
+            <img src={sootheSpace} className="w-8 rounded-full" />
             {/* <div className="text-sm text-black font-medium" >Daniel Le</div> */}
         </div>
     )

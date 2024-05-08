@@ -40,15 +40,11 @@ def login(request):
             password = data['password']
             user = authenticate(username=username, password=password)
             token = Tokens.objects.filter(user=user) if user else None
-            print("Dess")
             if user is not None:  # Only create a token if it does not exist
                 # django_login(request, user)
-                print("Dddess", token)
                 if not token or len(token) < 1:
                     token = Tokens(user=user)
-                    print("Dddess")
                     token.save()
-                    print("Dddess")
 
                 return JsonResponse({'success': 'Login successful'})
             else:
