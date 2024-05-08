@@ -1,12 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { HeaderRow } from '../components/HeaderRow';
 import BreathingTool from './BreathingTool';
+import natureImg from '../assets/nature_meditation.jpg'
+import beatsImg from '../assets/beats_meditation.avif'
+import chimesImg from '../assets/chimes_meditation.png'
+import natureAudio from '../assets/nature_ambience.wav'
+import chimesAudio from '../assets/chimes_meditation.flac'
+import beatsAudio from '../assets/beats_meditation.wav'
 
-// use carousel (DaisyUI) for tools
-// make a component for the carousel sections as we'll be reusing them
+
+interface CarouselProps {
+    image: string;
+    altText: string;
+    audioSrc: string;  // Path to the audio file
+    durations: number[];  // Array of durations to play audio in seconds
+  }
 
 const Meditation = () => {
-
+    
     const Featured = () => {
         return(
             <div className="flex-1 card h-[18vh] w-[90vw] bg-gradient-to-r from-emerald-200 to-teal-200 shadow-xl mb-6 text-slate-600">
@@ -21,48 +32,89 @@ const Meditation = () => {
         );
     }
 
-    const Carousel = () => { // Add props for heading (ex: Positivity: [Item/link 1, Image, alt], [Item/link 2, Image, alt] )  || For demo, we can probably make this barebones & do without the backend API
+    const Carousel: React.FC<CarouselProps> = ({ image, altText, audioSrc, durations }) => {
+        const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
+        
+        const handlePlayAudio = (index: number) => {
+            const audioElement = document.getElementById(`audio-${altText}-${index}`) as HTMLAudioElement;
+            if (!audioElement) return;
+    
+            if (currentlyPlaying === index) {  // If the current audio is clicked again, toggle it
+                audioElement.pause();
+                audioElement.currentTime = 0;
+                setCurrentlyPlaying(null);
+            } else {  // Stop any currently playing audio and play the clicked one
+                stopAllAudios();
+                audioElement.currentTime = 0;
+                audioElement.play();
+                setCurrentlyPlaying(index);
+            }
+        };
+    
+        const stopAllAudios = () => {
+            durations.forEach((_, idx) => {
+                const audio = document.getElementById(`audio-${altText}-${idx}`) as HTMLAudioElement;
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+        };
+    
         return (
-            <div className="flex flex-row h-fit w-[95vw] carousel ml-2 mb-5 gap-5"> {/* Carousel container (DaisyUI unstyled component) */}
-                <div className="carousel-item h-[15vh] w-[35vw]">
-                    <img className= "w-full h-auto rounded-3xl" 
-                    src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" 
-                    alt="Cone" />
-                </div> 
-                <div className="carousel-item h-[15vh] w-[35vw]">
-                    <img className= "w-full h-auto rounded-3xl" 
-                    src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" 
-                    alt="Grapes" />
-                </div> 
-                <div className="carousel-item h-[15vh] w-[35vw]">
-                    <img className= "w-full h-auto rounded-3xl" 
-                    src="https://daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.jpg" 
-                    alt="Cone" />
-                </div> 
-                <div className="carousel-item h-[15vh] w-[35vw]">
-                    <img className= "w-full h-auto rounded-3xl" 
-                    src="https://daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.jpg" 
-                    alt="Grapes" />
-                </div> 
-
-            </div>
-        );
-    }
-
-    const SoundsPanel = () => {
-        const toolHeadings = ["Nature", "Binural Beats", "Chime"]
-
-        return (
-            <div>
-                {toolHeadings.map((heading, index) => ( // Mapping toolsHeading (heading new val) (index's inbuilt & used to loop array | ES6)
-                    <div key={index} className='flex flex-col text-slate-600 font-bold text-2xl font-sans ml-3 gap-4 '>
-                        {heading}
-                        <Carousel/> {/* Call w necessary props (just heading should be fine)*/}
+            <div className="flex flex-row h-fit w-[95vw] carousel ml-2 mb-5 gap-5">
+                {durations.map((duration, index) => (
+                    <div key={index} className="carousel-item h-[15vh] w-[35vw] cursor-pointer" onClick={() => handlePlayAudio(index)}>
+                        <img className="w-full h-auto rounded-3xl" src={image} alt={altText} />
+                        <audio id={`audio-${altText}-${index}`} src={audioSrc} preload="auto"></audio>
                     </div>
                 ))}
             </div>
         );
-    }
+    };
+    
+    const SoundsPanel: React.FC = () => {
+        const soundHeadings = [
+            { 
+                title: "Nature", 
+                img: natureImg, 
+                alt: "Nature Meditation", 
+                audioSrc: natureAudio, 
+                durations: [60, 300, 900] // 1min, 5min, 15min
+            },
+            { 
+                title: "Binaural Beats", 
+                img: beatsImg, 
+                alt: "Binaural Beats", 
+                audioSrc: beatsAudio, 
+                durations: [60, 300, 900]
+            },
+            { 
+                title: "Chime", 
+                img: chimesImg, 
+                alt: "Chimes", 
+                audioSrc: chimesAudio, 
+                durations: [60, 300, 900]
+            }
+        ];
+
+        return (
+            <div>
+                {soundHeadings.map((sound, index) => (
+                    <div key={index} className='flex flex-col text-slate-600 font-bold text-2xl font-sans ml-3 gap-4 '>
+                        {sound.title}
+                        <Carousel 
+                            image={sound.img} 
+                            altText={sound.alt} 
+                            audioSrc={sound.audioSrc} 
+                            durations={sound.durations}
+                        />
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
     
     return (
         // Kept 90vh instead of full bc scrolling & previously bottom nav (before position-fixed)
@@ -76,7 +128,6 @@ const Meditation = () => {
                     <SoundsPanel/>
                 </div>
             </div>
-            
         </div>
     )
 }

@@ -12,9 +12,9 @@ const LogoutButton = () => {
     }
     return (
         <div className='fixed top-2 right-2'>
-            <button className='bg-green-400 py-1 px-2 rounded-md font-bold text-white'
+            <button className='bg-teal-500 py-1 px-2 rounded-md font-medium text-white'
                 onClick={handleLogout} >
-                LogOut</button>
+                Logout</button>
         </div>
     )
 }
