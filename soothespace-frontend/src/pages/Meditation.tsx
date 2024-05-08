@@ -82,21 +82,21 @@ const Meditation = () => {
                 img: natureImg, 
                 alt: "Nature Meditation", 
                 audioSrc: natureAudio, 
-                durations: [60, 300, 900] // 1min, 5min, 15min
+                durations: [300, 600, 1500] // 5 min, 10 min, 25 min
             },
             { 
                 title: "Binaural Beats", 
                 img: beatsImg, 
                 alt: "Binaural Beats", 
                 audioSrc: beatsAudio, 
-                durations: [60, 300, 900]
+                durations: [300, 600, 1500]
             },
             { 
                 title: "Chime", 
                 img: chimesImg, 
                 alt: "Chimes", 
                 audioSrc: chimesAudio, 
-                durations: [60, 300, 900]
+                durations: [300, 600, 1500]
             }
         ];
 
