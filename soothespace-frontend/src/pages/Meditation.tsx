@@ -4,10 +4,9 @@ import BreathingTool from './BreathingTool';
 import natureImg from '../assets/nature_meditation.jpg'
 import beatsImg from '../assets/beats_meditation.avif'
 import chimesImg from '../assets/chimes_meditation.png'
-import natureAudio from '../assets/nature_ambience.wav'
-import chimesAudio from '../assets/chimes_meditation.flac'
-import beatsAudio from '../assets/beats_meditation.wav'
-
+import natureAudio from '../assets/meditation sounds/Nature/5minN.mp3'
+import beatsAudio from '../assets/meditation sounds/Binaural Beats/5minBB.mp3'
+import chimesAudio from '../assets/meditation sounds/Chimes/5minWC.mp3'
 
 interface CarouselProps {
     image: string;
