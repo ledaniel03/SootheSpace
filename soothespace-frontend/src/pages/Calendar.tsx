@@ -39,6 +39,7 @@ const Calendar: React.FC = () => {
         const grid = [...new Array(35)].map(a => -1)
         // console.log(grid, startIndex)
 
+        
         for (const res of result) {
             const pos = res.day + startIndex - 1
             grid[pos % 35] = res.day
