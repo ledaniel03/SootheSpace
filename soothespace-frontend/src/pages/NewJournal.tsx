@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, FaBook, FaBroom, FaBed, FaUtensils, FaShoppingBag } from 'react-icons/fa';
 import { MdFamilyRestroom } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";

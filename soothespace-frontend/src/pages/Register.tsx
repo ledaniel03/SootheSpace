@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+// import axios from 'axios';
 import { useLocation } from 'wouter';
 import { addUserToDB } from '../utils/db';
 

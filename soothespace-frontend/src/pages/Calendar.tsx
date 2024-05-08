@@ -4,11 +4,7 @@ import { getAllEntriesFromDB } from '../utils/db';
 import { findEmojiByMood } from './Journal';
 
 
-// Defines the structure of a day object used in the calendar
-type Day = {
-    day: number;          // The day of the month
-    dayOfWeek: string;    // The name of the day of the week
-};
+
 
 // Weekday names
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -37,7 +33,7 @@ const Calendar: React.FC = () => {
             date.setDate(date.getDate() + 1); // Moves to the next day
         }
         const grid = [...new Array(35)].map(a => -1)
-        // console.log(grid, startIndex)
+         console.log(grid, startIndex)
 
         
         for (const res of result) {

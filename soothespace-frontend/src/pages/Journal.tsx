@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { RiTodoFill } from "react-icons/ri";
-import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, FaBook, FaBroom, FaBed, FaUtensils, FaShoppingBag, FaFontAwesome } from 'react-icons/fa';
+import { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import { RiTodoFill } from "react-icons/ri";
+// import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, FaBook, FaBroom, FaBed, FaUtensils, FaShoppingBag, FaFontAwesome } from 'react-icons/fa';
 import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
 import NewJournal, { getActionIcon } from './NewJournal';

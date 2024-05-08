@@ -1,4 +1,3 @@
-import React from "react";
 import { HeaderRow } from "../components/HeaderRow";
 import LogoutButton  from "../components/LogoutButton";
 

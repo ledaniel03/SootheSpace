@@ -1,4 +1,4 @@
-import { RxAvatar } from "react-icons/rx";
+// import { RxAvatar } from "react-icons/rx";
 import sootheSpace from '../assets/soothespace_logo.png'
 
 const Avatar = () => {

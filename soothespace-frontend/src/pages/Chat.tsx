@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import{ useEffect, useState } from 'react'
 import Avatar from '../components/Avatar'
 import { IoIosSend } from 'react-icons/io';
 import { getCurrentDate } from '../utils/dateFormat';
