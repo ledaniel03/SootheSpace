@@ -6,11 +6,7 @@ import { ChartComponent } from "./ChartComponent";
 // separate file for the newMood component questions
 
 const Mood = () => {
-    // const { setOpen: setFormOpen, comp: newForm } = usePopup(<newMood setOpen={(e:boolean)=>setFormOpen(e)}/>) 
 
-    const Chart = () => { // Include necessary props
-    }
-    
     return (
         <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-[90vh] overflow-auto'> {/* Changed h-full to h-screen */}
             <HeaderRow title='Mood Tracker'/> 

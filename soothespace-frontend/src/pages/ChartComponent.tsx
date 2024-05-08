@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, TooltipItem } from 'chart.js';
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import { getAllEntriesFromDB } from '../utils/db';
 
@@ -65,27 +65,6 @@ export const ChartComponent: React.FC = () => {
             borderWidth: 3
         }]
         
-    };
-    
-    // To disable tooltip/legend "Unknown"
-    const options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                enabled: true,
-                callbacks: {
-                    label: function(tooltipItem: TooltipItem<'bar'>) { // Explicit type for TooltipItem with generic 'bar'
-                        if (typeof tooltipItem.raw === 'number') {
-                            return `${tooltipItem.dataset.label}: ${tooltipItem.raw}`;
-                        }
-                    }
-                }
-            }
-        }
     };
 
     return (
