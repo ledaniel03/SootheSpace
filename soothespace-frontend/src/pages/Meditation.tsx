@@ -34,7 +34,7 @@ const Meditation = () => {
 
     const Carousel: React.FC<CarouselProps> = ({ image, altText, audioSrc, durations }) => {
         const [currentlyPlaying, setCurrentlyPlaying] = useState<number | null>(null);
-        
+
         const handlePlayAudio = (index: number) => {
             const audioElement = document.getElementById(`audio-${altText}-${index}`) as HTMLAudioElement;
             if (!audioElement) return;
@@ -64,14 +64,16 @@ const Meditation = () => {
         return (
             <div className="flex flex-row h-fit w-[95vw] carousel ml-2 mb-5 gap-5">
                 {durations.map((duration, index) => (
-                    <div key={index} className="carousel-item h-[15vh] w-[35vw] cursor-pointer" onClick={() => handlePlayAudio(index)}>
+                    <div key={index} className="carousel-item relative h-[15vh] w-[35vw] cursor-pointer" onClick={() => handlePlayAudio(index)}>
                         <img className="w-full h-auto rounded-3xl" src={image} alt={altText} />
                         <audio id={`audio-${altText}-${index}`} src={audioSrc} preload="auto"></audio>
+                        <div className="absolute top-0 left-0 text-slate-50 font-bold p-2">{Math.floor(duration/60)} min</div> {/* Add absolute positioning for the text */}
                     </div>
                 ))}
             </div>
         );
     };
+
     
     const SoundsPanel: React.FC = () => {
         const soundHeadings = [
