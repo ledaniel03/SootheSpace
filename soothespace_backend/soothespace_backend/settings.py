@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-7c*&njk8@p-f_g3^x&ueoal!f)polf7u!zxj^l9%)^*b+&qg!8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Add the IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.254.124','localhost']
+# Add the url or IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
+ALLOWED_HOSTS = ['https://soothespace.netlify.app/, 127.0.0.1', '192.168.254.124','localhost']
 
 
 # Application definition
