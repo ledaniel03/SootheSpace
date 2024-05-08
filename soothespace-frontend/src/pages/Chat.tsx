@@ -6,7 +6,7 @@ import { addMessageToDB, getAllMessagesFromDB } from '../utils/db' // Import fun
 
 interface IChatMessage { mes: string, type: 'in' | 'out', time: number }
 const Chat = () => {
-  const [mes, setMes] = useState('')   // contains typed message
+  const [mes, setMes] = useState('')   // contains typed message (input)
   const [sessionId, setSessionId] = useState(1) // session id for chat
   const [message, setMessages] = useState([] as IChatMessage[])
   const [sending, setSending] = useState(false)
@@ -34,11 +34,13 @@ const Chat = () => {
   const sendMessage = async () => {
     if (sending) return
     if (mes.length < 3) {
-      alert('Message too short!')
+      alert('Message is too short!')
       return
     }
     setSending(true)
     const res = await addMessageToDB(mes, 1)
+    setMes(''); // Clear the input field after sending the message
+
     if (res) {
       reloadMessages()
     }
@@ -100,7 +102,7 @@ const Chat = () => {
       </div>
       <div className='flex h-[8vh] justify-center items-center my-1'>
         <div className='flex w-[90vw] h-[6vh] rounded-full border-2 border-teal-600 items-center justify-between'>
-          <input className='flex flex-grow ml-3 text-sky-900 bg-slate-50 focus:outline-none placeholder-inherit ' type='text' id='small-input' placeholder='Write a message...'
+          <input className='flex flex-grow ml-3 text-sky-900 bg-slate-50 focus:outline-none placeholder-inherit' type='text' id='small-input' placeholder='Write a message...'
             value={mes} onChange={e => setMes(e.target.value)} />
           <button className={`${!sending ? 'text-teal-600 hover:text-teal-700' : "text-gray-200 cursor-default"} text-4xl mr-5`}
             onClick={sendMessage}> <IoIosSend /> </button>
