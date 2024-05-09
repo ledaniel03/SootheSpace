@@ -1,1 +1,1 @@
-web: gunicorn soothespace.wsgi --log-file -
+web: gunicorn yourproject.wsgi:application
