@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from corsheaders.signals import check_request_enabled
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,11 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7c*&njk8@p-f_g3^x&ueoal!f)polf7u!zxj^l9%)^*b+&qg!8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Add the url or IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
-APP_NAME = os.environ.get("FLY_APP_NAME")
-ALLOWED_HOSTS = [f'{APP_NAME}.fly.dev','127.0.0.1', '192.168.254.124','localhost']
+ALLOWED_HOSTS = ['*','127.0.0.1', '192.168.254.124','localhost']
 
 # Application definition
 
@@ -59,6 +60,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
+
 ]
 # Reference https://medium.com/@devsumitg/how-to-connect-reactjs-django-framework-c5ba268cb8be
 
