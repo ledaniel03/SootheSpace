@@ -1,1 +1,1 @@
-web: gunicorn soothespace.wsgi:application
+web: gunicorn soothespace-remote.wsgi:application
