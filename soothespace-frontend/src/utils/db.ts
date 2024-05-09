@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = 'http://localhost:8000' // Base URL for API requests (chat & other methods in db.ts)
+const BASE_URL = 'http://daniel03.pythonanywhere.com' // Base URL for API requests (chat & other methods in db.ts)
 
 // Async function to fetch JSON data from server- Parameters for path, method, body & headers
 const fetchJson = async (path: string, method: string = 'GET', body?: object, headers?: HeadersInit): Promise<[boolean, any]> => {
