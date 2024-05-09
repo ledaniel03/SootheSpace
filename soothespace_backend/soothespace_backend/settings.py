@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-7c*&njk8@p-f_g3^x&ueoal!f)polf7u!zxj^l9%)^*b+&qg!8
 DEBUG = True
 
 # Add the url or IP address of the server here (for local network testing) (MUST MODIFY AXIOS URL IN FRONTEND TO MATCH THIS IP ADDRESS)
-ALLOWED_HOSTS = ['https://soothespace.netlify.app/, 127.0.0.1', '192.168.254.124','localhost']
-
+APP_NAME = os.environ.get("FLY_APP_NAME")
+ALLOWED_HOSTS = [f'{APP_NAME}.fly.dev','127.0.0.1', '192.168.254.124','localhost']
 
 # Application definition
 
