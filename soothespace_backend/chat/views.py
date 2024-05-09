@@ -10,7 +10,7 @@ import json
 from django.http import JsonResponse
 
 
-API_KEY = 'sk-proj-LyK8AZ2oTESTpi6ztjOHT3BlbkFJtOmlb5I9aKffmhC4EDk1'
+API_KEY = 'sk-proj-4UG8lHmc7yHuMiRlPloaT3BlbkFJMxAy4Uk3g9iS0VXeGbHa'
 
 
 @csrf_exempt
