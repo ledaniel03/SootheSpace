@@ -39,10 +39,26 @@ Download the dependencies in the requirement.txt file by-
 3. In the frontend directory navigate to the utils folder > db.tsx > and **modify** the BASE_URL to the base URL you're running the backend on (should be http://127.0.0.1:8000)
 
 
-To test the website on your mobile or external devices, refer to the following guides:
+### Testing on local network (other devices)
 **Frontend:** https://dev.to/bhendi/how-to-open-your-vite-dev-server-on-your-mobile-k1k
 **Backend:** https://dev.to/emilledigital/serve-your-django-application-over-wifi-the-local-network-1a01
 (**note:** In the frontend directory navigate to the utils folder > db.tsx > and modify the BASE_URL to the base URL you're running the backend on (omit any "/" after)
+
+### Deploying Backend on PythonAnywhere:
+This can be done with any hosting service supporting Django & SQLite. In this guide, we'll be using PythonAnywhere as it's free-
+**Refer to the following links for a step by step guide on deployment**
+https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
+_or_
+https://www.youtube.com/watch?v=xtnUwvjOThg&t=227s
+
+
+### Deploying Frontend on Netlify:
+This can be done with any compatible frontend hosting service. In this guide, we'll be using netlify as it's free-
+**Refer to the following links for a step by step guide on deployment**
+https://docs.netlify.com/frameworks/vite/
+_or_
+https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
+
 
 
 React Structure Guide:
