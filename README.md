@@ -4,7 +4,29 @@ SootheSpace is your personal retreat for managing stress, anxiety, and low moods
 **Link to project:** [http://recruiters-love-seeing-live-demos.com/](https://soothespace.netlify.app/) **(Frontend may not be hosted or still connected to the backend when this is viewed)**
 
 ## How It's Made:
-**Tech used:** Typescript, React, Tailwind CSS, DaisyUI, Vite.js, Chart.js Django, Python, Django Rest Framework (for GET requests), SQLite, & OpenAI API 
+## Frontend: 
+**Tech used:** Typescript, React, Vite.js, Tailwind CSS, DaisyUI, Chart.js 
+### Component Architecture:
+The project's frontend architecture consists of:
+- **soothespace-frontend** the root directory which holds the entire project's frontend
+- **index.tsx** the entry point for our React Application
+- **App.tsx** represents the root component of our React Application & handles our wegpages routing
+- **pages** directory which is used for our web pages
+- **components** directory containing shared/reused components across many pages
+- **hooks** directory containing hooks which encapsulate commonly used behaviors across components or pages
+- **utils** directory containing typescript files for conversions & our backend integration
+- **assets** this directory is used to store static assets such as images, icons, fonts, and sometimes CSS files that are used across the application
+
+## Backend:
+**Tech used:** Django, Python, Django Rest Framework (for GET requests), SQLite, & OpenAI API 
+### Component Architecture:
+The project's frontend architecture consists of:
+- **soothespace_backend** the root directory which holds the entire project's backend.
+- **accounts** App that manages all backend processes related to user registration, authentication, and profile management in Django. It securely handles user data, authentication tokens, and interacts with the database to store and retrieve user-specific information, ensuring robust security and data integrity.
+- **chat** The chat App is responsible for handling all data transmission and storage for real-time and asynchronous messaging. It manages message queues, stores chat history, utilizes OpenAi's API, customizes the AI to act as a mental health companion, & ensures data consistency across user sessions, facilitating a seamless communication experience.
+- **user_settings** User settings provides a backend service for managing user password and profile settings. It interfaces with the database to save user-configured settings such as password login & profile picture, allowing for a personalized user experience.
+- **journal**- The journal App on the Django backend serves as a secure repository for users’ journal entries, handling storage, retrieval, & deletion. It ensures data privacy and utilizes REST APIs for accessing and managing journal entries.
+
 
 ## Deployment & Installation Guide:
 To run this project locally, download the project here:
