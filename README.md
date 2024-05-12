@@ -82,6 +82,9 @@ _or_
 https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
 
 
-
-React Structure Guide:
-https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
+## Assets & References Used:
+- **React Structure Guide:** https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
+- **Sounds used:**
+  - https://www.youtube.com/watch?v=ETdAlFuJ9PE&ab_channel=FosteringResilience
+  - https://www.youtube.com/watch?v=NACJwvt1dHI&ab_channel=SonoLumin
+  - https://www.youtube.com/watch?v=933iGRsKdao&ab_channel=SerenitySeekers
