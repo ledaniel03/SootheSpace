@@ -49,3 +49,22 @@ def add_entry(request):
     newEntry.save()
 
     return JsonResponse({"success": True, "entry_id": newEntry.id, "activity": activity}, status=200)
+
+
+@require_http_methods(["POST"])
+@csrf_exempt
+def delete_entry(request):
+    try:
+        data = json.loads(request.body.decode('utf-8'))
+        id = data.get('id')
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Invalid JSON data"}, status=400)
+
+    entries = Entry.objects.filter(id=int(id))
+    if len(entries)>0:
+        entries.delete()
+        return JsonResponse({"success": True}, status=200)
+    else:
+        return JsonResponse({"error": "Invalid JSON data"}, status=400)
+
