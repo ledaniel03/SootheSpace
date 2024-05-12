@@ -92,5 +92,9 @@ https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
   - https://www.youtube.com/watch?v=NACJwvt1dHI&ab_channel=SonoLumin
   - https://www.youtube.com/watch?v=933iGRsKdao&ab_channel=SerenitySeekers
 
-## Project Demo & Teaser
+## Project Recordings
+**Teaser**
+https://github.com/ledaniel03/SootheSpace/assets/60050273/dad64a8c-d5df-4319-bc56-464166586c9f
+
+**Demo**
 https://drive.google.com/file/d/1xIfL0SR9jFMIFVpwVWJuK81UL8jZMrXp/view?usp=sharing
