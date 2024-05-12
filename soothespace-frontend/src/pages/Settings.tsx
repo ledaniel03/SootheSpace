@@ -51,7 +51,7 @@ function ProfileUpdate() {
                 placeholder="Profile Picture URL"
             /> */}
             <button onClick={handleProfileUpdate}
-                className='bg-green-200 font-bold rounded-md text-black text-xl' >Update Profile</button>
+                className='bg-emerald-200 font-bold rounded-md text-slate-800 text-xl' >Update Profile</button>
             <div className='text-red-500'>{info}</div>
         </div>
     );

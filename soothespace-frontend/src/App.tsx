@@ -8,6 +8,7 @@ import Mood from './pages/Mood'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import { useLogin } from './hooks/useLogin'
+import Settings from './pages/Settings'
 
 function App() { // Routing and rendering of pages (parent component to other pages, child to main.tsx)
   const [homeMatch] = useRoute("/")
@@ -19,6 +20,8 @@ function App() { // Routing and rendering of pages (parent component to other pa
   // New routes for login and registration
   const [loginMatch] = useRoute("/login")
   const [registerMatch] = useRoute("/register")
+
+  const [settingsMatch] = useRoute("/settings")
 
   const { isLoggedin } = useLogin()
   
@@ -33,6 +36,8 @@ function App() { // Routing and rendering of pages (parent component to other pa
     if (moodMatch) return <Mood />;
     if (loginMatch) return <Login />; // Route for Login
     if (registerMatch) return <Register />; // Route for Register
+
+    if (settingsMatch) return <Settings />; // Route for Register
 
     return (
       <div>
