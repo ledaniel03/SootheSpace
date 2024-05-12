@@ -15,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div className="relative h-full flex-1 flex flex-col bg-slate-50 pt-10 gap-5">
+    <div className="relative h-full flex-1 flex flex-col bg-slate-50 pt-5 gap-3">
       <HeaderRow title="" />
       <div className="flex flex-col justify-center gap-4">
         <div className="hero mt-3">
