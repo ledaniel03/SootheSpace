@@ -8,6 +8,8 @@ SootheSpace is your personal retreat for managing stress, anxiety, and low moods
 ![System Architecture](https://github.com/ledaniel03/SootheSpace/assets/60050273/7e14d679-f23a-4afc-bc60-0bbc117f6c70)
 
 ## Frontend: 
+**Documentation:** [Frontend_Documentations.pdf](https://github.com/ledaniel03/SootheSpace/files/15287828/Frontend_Documentations.pdf)
+
 **Tech used:** Typescript, React, Vite.js, Tailwind CSS, DaisyUI, Chart.js 
 ### Component Architecture:
 The project's frontend architecture consists of:
@@ -82,7 +84,6 @@ This can be done with any compatible frontend hosting service. In this guide, we
 https://docs.netlify.com/frameworks/vite/
 _or_
 https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
-
 
 ## Assets & References Used:
 - **React Structure Guide:** https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
