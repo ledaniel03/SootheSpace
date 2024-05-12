@@ -6,7 +6,7 @@ import { HeaderRow } from '../components/HeaderRow';
 import { usePopup } from '../hooks/usePopup';
 import NewJournal, { getActionIcon } from './NewJournal';
 import { formatDateTime } from '../utils/dateFormat';
-import { getAllEntriesFromDB } from '../utils/db'; // moved getAllEntriesFromDB to db.ts
+import { deleteEntryFromDB, getAllEntriesFromDB } from '../utils/db'; // moved getAllEntriesFromDB to db.ts
 import { IconType } from 'react-icons';
 
 
@@ -50,8 +50,8 @@ const Journal = () => {
     }, [updates])
 
     const loadEntries = async () => {
-        const newEntries = await getAllEntriesFromDB()
-        console.log(newEntries)
+        const newEntries: any[] = await getAllEntriesFromDB()
+        localStorage.setItem('entry_count', newEntries.length + '')
         setEntries(newEntries as any)
     };
 
@@ -59,8 +59,17 @@ const Journal = () => {
        Need a entry component to display journal entries & a component to enlarge it when clicked (STRETCH)
        History entry component to display journal entries (maybe use entry & index as props?) To pull from DB /array mapping & display, will need a TS interface
     */
-    const Entry = ({ date, mood, activity, val }: IEntry) => {
+    const Entry = ({ date, mood, activity, val, id }: IEntry) => {
         const dateTime = formatDateTime(date.toString()); // Convert date to readable format (via util function)
+
+        const deleteEntry = async () => {
+            const [state, res] = await deleteEntryFromDB({ id })
+            if (state) {
+                refreshJornal(p => p + 1)
+            } else {
+                console.log(res)
+            }
+        }
         const activities = (() => {
             const actions = activity.split(',')
             const data = [] as [IconType, string][]
@@ -76,13 +85,14 @@ const Journal = () => {
                 </div>)
             })
         })()
+
         return (
             <div className='flex flex-col font-medium rounded-md shadow-md my-2 bg-slate-0'>
                 {/* container for the entry's date*/}
                 <div className="pl-20 text-white text-lg rounded-t-md bg-teal-500">{dateTime.date}</div> {/* Date via db & convert format */}
 
                 {/* container for the entry's mood, activity, and note*/}
-                <div className='flex flex-row text-teal-500 tracking-tight py-3'>
+                <div className='flex flex-row text-teal-500 tracking-tight py-3 justify-between'>
                     <div className='flex flex-row font-normal text-5xl gap-3'> {getEmoji(mood)}
 
                         <div className='flex flex-col justify-start font-normal text-2xl'> {/* Mood entry via db */}
@@ -93,14 +103,15 @@ const Journal = () => {
                             <div className='flex text-sm text-slate-500 mt-4 gap-1'> <span className='font-semibold'>Note: </span> {val} </div> {/* Journal entry via db */}
                         </div>
                     </div>
-                    <div className='flex grow justify-end'>
-                        <div className='font-normal text-slate-400 text-sm mt-2 mr-6'> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
+                    <div className='flex flex-col items-center justify-center gap-4 mx-4'>
+                        <div className='font-normal text-slate-400 text-sm '> {dateTime.time} </div> {/* Time via db  (with date, just convert)*/}
+                        <button className=' text-sm'
+                            onClick={deleteEntry} >DELETE</button>
                     </div>
                 </div>
             </div>
         );
     }
-    console.log(entries)
     return (
         // Changed navbar to position fixed, can set to 100vh or full now
         <div className='relative flex flex-col bg-slate-50 pt-5 gap-5 h-full'> {/* Journal root container */}

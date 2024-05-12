@@ -48,7 +48,7 @@ function Login() {
                 onChange={(e) => setPassword2(e.target.value)}
                 placeholder="Password again... "
             />
-            <a className='text-sm text-white ' href='/login' >login instead?</a>
+            <button className='text' onClick={e=>setLocation('/login')} >login instead?</button>
             <div className='text-red-500' >{info}</div>
             <button onClick={handleLogin} className='bg-blue-500 w-fit ' >Signup</button>
         </div>

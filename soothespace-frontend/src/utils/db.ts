@@ -138,3 +138,35 @@ export const checkLogin = async () => {
     }
 }
 
+interface IProfile {
+    newPassword: string;
+    // profilePic: string;
+}
+export const updateUserprofile = async ({
+    newPassword,
+    // profilePic
+}: IProfile) => {
+    const [status, data] = await fetchJson(`/accounts/updateprofile/`, "POST", {
+        "username": localStorage.getItem('username'),
+        newpassword: newPassword,
+        // profilepic: profilePic
+    })
+    if (status && data['success']) {
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}
+
+
+export const deleteEntryFromDB = async ({ id }: { id: number }) => {
+    const [status, data] = await fetchJson(`/journal/delete_entry/`, "POST", {
+        "username": localStorage.getItem('username'),
+        id,
+    })
+    if (status && data['success']) {
+        return [true, true]
+    } else {
+        return [false, data['error']]
+    }
+}

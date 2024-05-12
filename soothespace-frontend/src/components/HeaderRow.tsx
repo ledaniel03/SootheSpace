@@ -1,4 +1,22 @@
+import { useLocation } from "wouter"
 import Avatar from "./Avatar"
+import { IoSettings } from "react-icons/io5"
+import LogoutButton from "./LogoutButton"
+
+
+const Settings = () => {
+    const [loc, nav] = useLocation()
+    const showSettings = () => {
+      nav('/settings')
+    }
+    return (
+      <div className="fixed top-2 right-[90px] " >
+        <IoSettings className="text-[2rem] cursor-pointer"
+          onClick={showSettings} />
+      </div>
+    )
+  }
+  
 
 export const HeaderRow = ({ title }: { title: string}) => {
 
@@ -10,6 +28,9 @@ export const HeaderRow = ({ title }: { title: string}) => {
             {/*        <Icon className='text-black' size={30} /> */}
                     <div className="text-black font-bold text-3xl  font-sans" >{title}</div>
                 </div>
+                <Settings  />
+                <LogoutButton />
+
             </div>
         </div>
     )

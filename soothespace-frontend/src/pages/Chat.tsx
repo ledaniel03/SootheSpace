@@ -82,7 +82,7 @@ const Chat = () => {
   // Parent chat component
   return (
     <div className='relative flex flex-col h-full w-full bg-gradient-to-b from-teal-50 to-slate-50'> {/* Chat page root container & bg*/}
-      <div className='flex flex-col items-center my-6 gap-2 text-sky-900'> {/* Chat header */}
+      <div className='flex flex-col items-center my-4 gap-2 text-sky-900'> {/* Chat header */}
         <Avatar /> {/* Avatar component, later replace w our logo */}
         {getCurrentDate()} {/* util dateFormat function */}
       </div>
