@@ -4,6 +4,9 @@ SootheSpace is your personal retreat for managing stress, anxiety, and low moods
 **Link to project:** [http://recruiters-love-seeing-live-demos.com/](https://soothespace.netlify.app/) **(Frontend may not be hosted or still connected to the backend when this is viewed)**
 
 ## How It's Made:
+
+![System Architecture](https://github.com/ledaniel03/SootheSpace/assets/60050273/7e14d679-f23a-4afc-bc60-0bbc117f6c70)
+
 ## Frontend: 
 **Tech used:** Typescript, React, Vite.js, Tailwind CSS, DaisyUI, Chart.js 
 ### Component Architecture:
@@ -73,7 +76,6 @@ https://help.pythonanywhere.com/pages/DeployExistingDjangoProject/
 _or_
 https://www.youtube.com/watch?v=xtnUwvjOThg&t=227s
 
-
 ### Deploying Frontend on Netlify:
 This can be done with any compatible frontend hosting service. In this guide, we'll be using netlify as it's free-
 **Refer to the following links for a step by step guide on deployment**
@@ -88,7 +90,6 @@ https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
   - https://www.youtube.com/watch?v=ETdAlFuJ9PE&ab_channel=FosteringResilience
   - https://www.youtube.com/watch?v=NACJwvt1dHI&ab_channel=SonoLumin
   - https://www.youtube.com/watch?v=933iGRsKdao&ab_channel=SerenitySeekers
-
 
 ## Project Demo & Teaser
 https://drive.google.com/file/d/1xIfL0SR9jFMIFVpwVWJuK81UL8jZMrXp/view?usp=sharing
