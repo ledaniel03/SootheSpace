@@ -140,16 +140,16 @@ export const checkLogin = async () => {
 
 interface IProfile {
     newPassword: string;
-    // profilePic: string;
+    profilePic: string;
 }
 export const updateUserprofile = async ({
     newPassword,
-    // profilePic
+    profilePic
 }: IProfile) => {
     const [status, data] = await fetchJson(`/accounts/updateprofile/`, "POST", {
         "username": localStorage.getItem('username'),
         newpassword: newPassword,
-        // profilepic: profilePic
+        profilepic: profilePic
     })
     if (status && data['success']) {
         return [true, true]

@@ -6,7 +6,7 @@ function ProfileUpdate() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [newPassword2, setNewPassword2] = useState('');
-    // const [profilePicUrl, setProfilePicUrl] = useState('');
+    const [profilePicUrl, setProfilePicUrl] = useState('');
     const [info, setInfo] = useState('');
     const [location, setLocation] = useLocation();
 
@@ -17,8 +17,8 @@ function ProfileUpdate() {
             return
         }
         const [state, info] = await updateUserprofile({
-            newPassword
-            // profilePic: profilePicUrl
+            newPassword,
+            profilePic: profilePicUrl
         });
         if (state) {
             setInfo("Profile updated successfully");
@@ -43,13 +43,13 @@ function ProfileUpdate() {
                 onChange={(e) => setNewPassword2(e.target.value)}
                 placeholder="Confirm new password"
             />
-            <h2 className='font-bold text-white' >Update Profile Picture</h2>
-            {/* <input
+           {/*} <h2 className='font-bold text-white' >Update Profile Picture</h2> */}
+            {/*<input
                 type="text"
                 value={profilePicUrl}
                 onChange={(e) => setProfilePicUrl(e.target.value)}
                 placeholder="Profile Picture URL"
-            /> */}
+    /> */}
             <button onClick={handleProfileUpdate}
                 className='bg-emerald-200 font-bold rounded-md text-slate-800 text-xl' >Update Profile</button>
             <div className='text-red-500'>{info}</div>
