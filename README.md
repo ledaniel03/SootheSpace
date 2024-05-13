@@ -23,7 +23,8 @@ The project's frontend architecture consists of:
 - **assets** this directory is used to store static assets such as images, icons, fonts, and sometimes CSS files that are used across the application
 
 ## Backend:
-**Documentation:** 
+**Documentation:** [BackendDocumentation.pdf](https://github.com/ledaniel03/SootheSpace/files/15289217/BackendDocumentation.pdf)
+
 **Tech used:** Django, Python, Django Rest Framework (for GET requests), SQLite, & OpenAI API 
 ### Component Architecture:
 The project's frontend architecture consists of:
