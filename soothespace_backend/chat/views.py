@@ -9,6 +9,19 @@ from openai import OpenAI
 import json
 from django.http import JsonResponse
 
+"""
+@author @ledaniel03 @marios-petrov
+API views for managing chat sessions, sending messages, and retrieving messages in a chat application.
+
+- start_chat_session: Initializes a new chat session for a user, creating an opening message using GPT-based AI and returns session details.
+  Utilizes POST requests and saves the session and message to the database. Responds with session ID and the initial AI message.
+
+- send_message: Accepts POST requests containing a chat session ID, user input, and username. Saves the user's message to the database,
+  calls the OpenAI API to generate a response, and saves the AI response back to the database. Returns the session ID, user's input, and AI response.
+
+- get_messages: Handles GET requests to retrieve all messages from a specific chat session. Validates the session ID, retrieves messages from the database,
+  and returns them formatted with message direction, text, and associated username. Responds with an error message if the session ID is invalid.
+"""
 
 API_KEY = 'sk-proj-OeHNgF9IEpVUg1yLxxE1T3BlbkFJYUiDMSnBgsKUpahRHSmt'
 

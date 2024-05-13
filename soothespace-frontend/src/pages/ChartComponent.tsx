@@ -3,6 +3,12 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 import { Bar } from 'react-chartjs-2';
 import { getAllEntriesFromDB } from '../utils/db';
 
+/**
+ * @author @ledaniel03
+ * @description Displays a bar chart of mood counts from user entries. It dynamically fetches and aggregates mood data
+ * from the database, updating the chart to reflect the distribution of moods.
+ */
+
 // Registering the components used by the Bar chart
 ChartJS.register(
     CategoryScale,

@@ -1,6 +1,12 @@
 
 const weekday: readonly string[] = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]; // Array readonly, cannot be modified
 
+/**
+ * @author @ledaniel03
+ * @description Functions to format dates and times for the journal history and current date.
+ */
+
+// Function to get the current date in the format "Day Abbrev. Month Abbrev. Day Number Year"
 export const getCurrentDate = (): string => {
     const d: Date = new Date(); // TS infers type of d as Date
     let day: string = weekday[d.getDay()].slice(0, 3); // Get day of the week (0 to 6 of a date, indexed day from array, & then sliced for abbrev.)

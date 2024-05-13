@@ -5,6 +5,10 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Tokens
 
+"""
+@author @ledaniel03 @marios-petrov
+
+"""
 
 @csrf_exempt
 def register(request):

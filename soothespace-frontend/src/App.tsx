@@ -10,6 +10,13 @@ import Register from './pages/Register'
 import { useLogin } from './hooks/useLogin'
 import Settings from './pages/Settings'
 
+/**
+ * @author @ledaniel03
+ * @description Serves as the primary routing controller in the application, handling the display of various pages based on the route. 
+ * Integrates login checks and conditionally renders pages like Home, Chat, Journal, Meditation, Mood, Login, Register, and Settings
+ * based on the user's authentication status and navigational inputs.
+ */
+
 function App() { // Routing and rendering of pages (parent component to other pages, child to main.tsx)
   const [homeMatch] = useRoute("/")
   const [chatMatch] = useRoute("/chat")

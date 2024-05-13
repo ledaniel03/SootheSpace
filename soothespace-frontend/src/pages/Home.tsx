@@ -2,6 +2,13 @@ import React from "react";
 import { HeaderRow } from "../components/HeaderRow";
 import LogoutButton from "../components/LogoutButton";
 
+/**
+ * @author @ledaniel03
+ * @description Presents the main landing page for SootheSpace, featuring an introduction to the platform's mission and features.
+ * Includes a modal that provides detailed information on how to use various features like Chat, Journaling, Mood Tracking, and Meditation.
+ * Utilizes components like `HeaderRow` and `LogoutButton` for UI consistency and functionality.
+ */
+
 const Home = () => {
   const openModal = () => {
     const modal = document.getElementById("guide_modal");

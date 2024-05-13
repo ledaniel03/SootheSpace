@@ -8,8 +8,19 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from datetime import datetime
 
-# Create your views here.
+"""
+@author @ledaniel03
+Django Views for CRUD operations on journal entries.
 
+- get_entries: Retrieves all entries from the database and returns them in a formatted JSON response.
+  Uses the GET method and responds with an array of entry objects, each containing details about the user, date, mood, activity, and any additional value (val).
+
+- add_entry: Accepts JSON-formatted POST requests to create a new entry in the database.
+  The request data must include 'user', 'date', 'mood', 'activity', and 'val'. Responds with success status and new entry details if the data is valid, or an error message if the JSON is invalid.
+
+- delete_entry: Allows for the deletion of an entry based on its ID, provided via a JSON-formatted POST request.
+  Responds with a success status if the entry is successfully deleted or an error message if no entry matches the given ID or the JSON data is invalid.
+"""
 
 @api_view(['GET'])
 def get_entries(request):

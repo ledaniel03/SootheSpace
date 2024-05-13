@@ -3,6 +3,14 @@ import { useState } from 'react';
 import { useLocation } from 'wouter';
 import { addUserToDB } from '../utils/db';
 
+/**
+ * @author @ledaniel03
+ * @description Manages the user signup process by collecting username and password information,
+ * verifying details, and interacting with the database to register new users. Redirects to the home page
+ * upon successful signup or provides feedback on issues encountered during the process.
+ */
+
+// Stateful component to manage user signup
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

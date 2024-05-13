@@ -5,6 +5,10 @@ from rest_framework.response import Response
 from .models import UserProfile
 from .serializers import UserProfileSerializer, UserSerializer
 
+"""
+@author @marios-petrov
+
+"""
 @api_view(['GET', 'PUT'])
 @permission_classes([IsAuthenticated])
 def manage_user_settings(request):

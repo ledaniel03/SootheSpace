@@ -6,6 +6,14 @@ import { FaJournalWhills } from "react-icons/fa";
 import { GiMeditation } from "react-icons/gi";
 import { useLocation } from 'wouter';
 
+/**
+ * @author @ledaniel03
+ * @description Provides a bottom navigation bar for the application, 
+ * allowing easy navigation between different sections such as Home, Chat, Journal, Mood, and Meditation. 
+ * Each option is represented by an icon and a label.
+ */
+
+
 // Definition of the BottomNav functional component
 const BottomNav = () => {
     // Using the useLocation hook to get the current URL and a navigate function for changing pages

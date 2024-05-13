@@ -9,6 +9,16 @@ import { formatDateTime } from '../utils/dateFormat';
 import { deleteEntryFromDB, getAllEntriesFromDB } from '../utils/db'; // moved getAllEntriesFromDB to db.ts
 import { IconType } from 'react-icons';
 
+/**
+ * @author @ledaniel03
+ * @description Manages the journal functionality of the application, including displaying, adding,
+ * & deleting journal entries. Utilizes custom hooks for modal management and interacts
+ * 
+ * Components:
+ * - `Journal`: Main component that orchestrates the journal UI and logic (entry display, addition, and deletion).
+ * - `Entry`: Displays individual journal entries and handles deletion.
+ */
+
 
 // Entry interface to define the structure of a journal entry (TS syntax: Enforces all elements in Entry object to be of type specified)
 interface IEntry {

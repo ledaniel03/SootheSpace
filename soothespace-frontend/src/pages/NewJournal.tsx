@@ -3,6 +3,12 @@ import { FaCalendarAlt, FaDumbbell, FaFootballBall, FaCouch, FaFilm, FaGamepad, 
 import { MdFamilyRestroom } from "react-icons/md";
 import { FaUserFriends } from "react-icons/fa";
 import { addEntryToDB } from '../utils/db';
+/**
+ * @author @ledaniel03
+ * @description Manages the creation of new journal entries in a multi-step form, 
+ * allowing users to select their mood, activities, and provide optional descriptions. 
+ * Integrates with backend to save entries.
+ */
 
 const options2 = [
     { icon: MdFamilyRestroom, name: "Family" },
@@ -93,6 +99,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
         )
     }
 
+    // If step is 0, display the mood selection screen
     if (step === 0) {
         return (
             <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-3 w-[95vw] relative' >
@@ -118,6 +125,7 @@ const NewJournal = ({ setOpen }: { setOpen: Function }) => {
             </div>
         )
     }
+    // If step is 1, display the activity selection screen
     if (step === 1) {
         return (
             <div className='text-center bg-white py-16 px-4 rounded-xl drop-shadow-sm flex flex-col items-center gap-2 w-[95vw] relative' >

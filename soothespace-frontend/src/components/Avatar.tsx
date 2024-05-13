@@ -2,6 +2,13 @@
 import sootheSpace from '../assets/soothespace_logo.png'
 import { FaJournalWhills } from "react-icons/fa";
 
+/**
+ * @author @ledaniel03
+ * @description Displays a user avatar with the application logo and a badge if the user has more than 5 entries. 
+ * It reflects the user's interaction with the application through the count of journal entries.
+ */
+
+
 const Badge = () => {
 
     return (

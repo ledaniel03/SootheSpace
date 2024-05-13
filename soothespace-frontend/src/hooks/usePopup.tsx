@@ -1,9 +1,12 @@
 import { useState } from "react";
 
-/*
-    Black box component that handles popup visibility and content.
-    useState to set when we display the component or not, & onClick={(e) => setOpen(false)} to close the popup when clicked outside.
-*/
+/**
+ * @author @ledaniel03
+ * @description A custom hook managing the visibility of a modal or popup component. It controls whether
+ * the popup is open and handles its display logic, including closing the popup when clicking outside its content.
+ * @param element The React component or JSX to render inside the popup.
+ */
+
 
 export const usePopup = (element: any) => {
   const [open, setOpen] = useState(false);

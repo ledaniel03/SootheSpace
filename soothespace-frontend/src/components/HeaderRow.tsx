@@ -3,6 +3,12 @@ import Avatar from "./Avatar"
 import { IoSettings } from "react-icons/io5"
 import LogoutButton from "./LogoutButton"
 
+/**
+ * @author @ledaniel03
+ * @description Settings: displays a settings icon that, when clicked, navigates the user to the settings page. Positioned fixed at the top right of the viewport to ensure constant access.
+ *  HeaderRow: renders the top header row of the application, integrating crucial navigation and user interface elements such as the Avatar, page title, settings icon, and logout button. Facilitates user interaction and navigation.
+ */
+ 
 
 const Settings = () => {
     const [loc, nav] = useLocation()

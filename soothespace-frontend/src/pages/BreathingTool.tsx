@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react'
 import { IoIosArrowBack } from "react-icons/io";
 
-// To-do: Add music, (water ripple effects w animations lib?)
-// Gradient bg would look nicer (sky-400 & sky-500 top to bottom) (same for the radial with its values) (would need 2 hooks- start and end color state's for this)
-// Modify useEffect so we can decouple the text in the inhale/exhale steps & animate them w/o re-renders affecting them
-// Maybe confetti or some sort of celebration effect on end component?
+/**
+ * @author @ledaniel03
+ * @description `BreathingTool` component provides a user interface for a breathing exercise tool. It includes a modal
+ * that guides the user through a series of breathing steps to help manage stress. This component handles state
+ * management for the modal's visibility, current step in the breathing process, and the progress of each breathing
+ * cycle, as well as user interactions within the modal.
+ */
 
 // Using TS, FC is a type alias for React.FunctionComponent
 const BreathingTool: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false)
 
+    // Component for the modal body, includes state management to check the user's current step in the breathing process & internal nested components representing different stages
     const ModalBody = () => {
         const [bgColor, setBgColor] = useState('bg-sky-400')
         const [radialColor, setRadialColor] = useState('bg-sky-300')
@@ -116,6 +120,7 @@ const BreathingTool: React.FC = () => {
                 </div>
             );
         }
+        // `closeModal` handles the action of closing the modal and resetting all related states to their initial values.
         const closeModal = () => {
             // setStep(0); setBgColor('bg-sky-400');
             // setRadialColor('bg-sky-300'); setAction('inhale');
@@ -142,6 +147,8 @@ const BreathingTool: React.FC = () => {
             </dialog>
         )
     }
+
+    //  `openModal` handles the opening of the modal and initiates the display process with a slight delay for smoother user experience.
     const openModal = () => {
         setModalOpen(true)
         setTimeout(() => { // delay for modal to be rendered then show it

@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { updateUserprofile } from '../utils/db'; // Assuming you have a function to update user profile in utils/db
 import { useLocation } from 'wouter';
 
+/**
+ * @author @ledaniel03
+ * @description Provides an interface for users to update their profile details, specifically allowing password changes. 
+ * Validates new passwords and updates them through `updateUserprofile` from '../utils/db'.
+ */
+
+// Stateful component to manage profile update
 function ProfileUpdate() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');

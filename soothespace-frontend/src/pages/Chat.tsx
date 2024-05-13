@@ -4,6 +4,14 @@ import { IoIosSend } from 'react-icons/io';
 import { getCurrentDate } from '../utils/dateFormat';
 import { addMessageToDB, getAllMessagesFromDB } from '../utils/db' // Import functions to interact with DB (API calls)
 
+/**
+ * @author @ledaniel03
+ * @description Handles the user interface for a chat system, allowing users to send and receive messages.
+ * Implements message loading, display, and asynchronous sending through the use of utilities for database interactions.
+ * Includes dynamic message updating and input validation.
+ */
+
+
 interface IChatMessage { mes: string, type: 'in' | 'out', time: number }
 const Chat = () => {
   const [mes, setMes] = useState('')   // contains typed message (input)

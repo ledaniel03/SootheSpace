@@ -3,6 +3,13 @@ import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
 import { getAllEntriesFromDB } from '../utils/db';
 import { findEmojiByMood } from './Journal';
 
+/**
+ * @author @ledaniel03
+ * @description Manages a calendar view showing mood emojis for journal entries. Allows month navigation.
+ * Handles day and mood visualization based on user entries.
+ */
+
+
 // Weekday names
 const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
@@ -40,7 +47,7 @@ const Calendar: React.FC = () => {
     };
 
     const grid = getDaysArray(currentDate.getFullYear(), currentDate.getMonth()); // Calculate on render
-
+    
     const nextMonth = (): void => {
         setCurrentDate(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1));
     };

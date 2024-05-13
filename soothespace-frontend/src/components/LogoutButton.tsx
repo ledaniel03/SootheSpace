@@ -2,6 +2,12 @@
 import { logoutUserDB } from '../utils/db'
 import { useLocation } from 'wouter'
 
+/**
+ * @author @ledaniel03
+ * @description Provides a logout button that handles user logout via `logoutUserDB` from '../utils/db'.
+ * Upon successful logout, navigates the user to the login page.
+ */
+
 const LogoutButton = () => {
     const [, navigate] = useLocation()
     const handleLogout = async () => {

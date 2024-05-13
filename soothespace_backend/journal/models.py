@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 class Entry(models.Model):
     id = models.AutoField(primary_key=True) # auto incrementing primary key
-    user = models.CharField(max_length=16, default='')  # WILL be a foreign key to our inbuilt django user model (settings.AUTH_USER_MODEL)
+    user = models.CharField(max_length=16, default='')  
     date = models.DateTimeField(default=timezone.now) 
     mood = models.CharField(max_length=16, default='')
     activity = models.CharField(max_length=16, default='')

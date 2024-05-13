@@ -1,5 +1,15 @@
 import axios from "axios"
 
+/**
+ * @author @ledaniel03
+* @description This module handles communication with a backend server for a web application using API calls.
+ * It includes functionalities for managing user accounts, sending and receiving chat messages,
+ * and managing journal entries. The interactions are primarily with a Django backend, and the
+ * API endpoints are structured to handle tasks such as user registration, login, logout,
+ * adding and fetching chat messages, as well as creating and retrieving journal entries.
+ */
+
+
 const BASE_URL = 'https://daniel03.pythonanywhere.com' // Base URL for API requests (chat & other methods in db.ts)
 
 // Async function to fetch JSON data from server- Parameters for path, method, body & headers
@@ -24,12 +34,14 @@ const fetchJson = async (path: string, method: string = 'GET', body?: object, he
     }
 }
 
+// `addMessageToDB`: Adds a chat message to the database
 export const addMessageToDB = async (mes: string, session_id: number) => {
     const message = { session_id, input: mes, username: localStorage['username'] }
     const [res, data] = await fetchJson('/chat/send_message/', "POST", message)
     return res
 }
 
+// `getAllMessagesFromDB`: Fetches all chat messages from the database
 export const getAllMessagesFromDB = async (session_id: number) => {
     const [status, data] = await fetchJson(`/chat/get_messages/${session_id}/`)
     if (status) {
@@ -55,6 +67,7 @@ export const getAllMessagesFromDB = async (session_id: number) => {
 // 'activity': entry.activity,
 // 'val': entry.val,
 
+// `addEntryToDB`: Adds a journal entry to the database
 export const addEntryToDB = async (message: {
     user: string, date: number, mood: string,
     activity: string, val: string
@@ -67,6 +80,7 @@ export const addEntryToDB = async (message: {
     }
 }
 
+// `getAllEntriesFromDB`: Fetches all journal entries from the database
 export const getAllEntriesFromDB = async () => {
     try {
         const response = await axios.get(`${BASE_URL}/journal/get_entries/`); // Change to actual API endpoint (via local server or network)
@@ -86,8 +100,7 @@ export const getAllEntriesFromDB = async () => {
     }
 }
 
-// ACCOUNT ACTIONS
-
+// ACCOUNT ACTIONS (REGISTER, LOGIN, LOGOUT)
 export const addUserToDB = async (message: { username: string, password: string }) => {
     const [status, data] = await fetchJson(`/accounts/register/`, "POST", message)
     if (status && data['success']) {
@@ -98,7 +111,7 @@ export const addUserToDB = async (message: { username: string, password: string 
     }
 }
 
-
+// Handles user login, returning a boolean for success or error message
 export const loginUserDB = async (message: { username: string, password: string }) => {
     const [status, data] = await fetchJson(`/accounts/login/`, "POST", message)
     if (status && data['success']) {
@@ -109,7 +122,7 @@ export const loginUserDB = async (message: { username: string, password: string 
     }
 }
 
-
+// Handles user logout, returning a boolean for success or error message
 export const logoutUserDB = async () => {
     const [status, data] = await fetchJson(`/accounts/logout/`, "POST", {
         "username": localStorage.getItem('username'),
@@ -122,11 +135,13 @@ export const logoutUserDB = async () => {
     }
 }
 
+// Saves user details to local storage
 const saveUserDetails = (name: string, password: string) => {
     localStorage.setItem('username', name)
     // localStorage.setItem('password', password)
 }
 
+// Checks if user is logged in
 export const checkLogin = async () => {
     const [status, data] = await fetchJson(`/accounts/checklogin/`, "POST", {
         "username": localStorage.getItem('username'),
@@ -142,6 +157,8 @@ interface IProfile {
     newPassword: string;
     profilePic: string;
 }
+
+// Updates user profile (password and profile picture, but only password for now)
 export const updateUserprofile = async ({
     newPassword,
     profilePic
@@ -158,7 +175,7 @@ export const updateUserprofile = async ({
     }
 }
 
-
+// `deleteEntryFromDB`: Deletes a journal entry from the database
 export const deleteEntryFromDB = async ({ id }: { id: number }) => {
     const [status, data] = await fetchJson(`/journal/delete_entry/`, "POST", {
         "username": localStorage.getItem('username'),

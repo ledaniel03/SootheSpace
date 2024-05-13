@@ -8,6 +8,13 @@ import natureAudio from '../assets/meditation sounds/Nature/5minN.mp3'
 import beatsAudio from '../assets/meditation sounds/Binaural Beats/5minBB.mp3'
 import chimesAudio from '../assets/meditation sounds/Chimes/5minWC.mp3'
 
+/**
+ * @author @ledaniel03
+ * @description Provides an interactive interface for meditation using audio tools and featured content.
+ * This component incorporates a carousel for selecting meditation durations and types (nature sounds, binaural beats, chimes),
+ * and a featured section promoting a specific breathing tool for stress relief.
+ */
+
 interface CarouselProps {
     image: string;
     altText: string;

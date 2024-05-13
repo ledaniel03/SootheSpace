@@ -3,6 +3,17 @@ import { useState } from 'react';
 import { loginUserDB } from '../utils/db';
 import { useLocation } from 'wouter';
 
+/**
+ * @author @ledaniel03
+ * @description Implements the login functionality for the application. Allows users to enter
+ * credentials to authenticate. Provides feedback on login status and navigates to the home
+ * page on successful login or prompts for registration.
+ *
+ * Functions:
+ * - `handleLogin`: Validates input and uses `loginUserDB` from '../utils/db' to authenticate users.
+ */
+
+
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');

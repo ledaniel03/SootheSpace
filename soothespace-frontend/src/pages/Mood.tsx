@@ -3,7 +3,10 @@ import { HeaderRow } from '../components/HeaderRow';
 import Calendar from './Calendar';
 import { ChartComponent } from "./ChartComponent";
 
-// separate file for the newMood component questions
+/**
+ * @author @ledaniel03
+ * @description Parent component for the Mood Tracker page. Displays a calendar view of mood entries and insights.
+ */
 
 const Mood = () => {
 
