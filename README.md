@@ -23,6 +23,7 @@ The project's frontend architecture consists of:
 - **assets** this directory is used to store static assets such as images, icons, fonts, and sometimes CSS files that are used across the application
 
 ## Backend:
+**Documentation:** 
 **Tech used:** Django, Python, Django Rest Framework (for GET requests), SQLite, & OpenAI API 
 ### Component Architecture:
 The project's frontend architecture consists of:
@@ -86,6 +87,7 @@ _or_
 https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
 
 ## Assets & References Used:
+- **OpenAI API:** https://platform.openai.com/docs/quickstart 
 - **React Structure Guide:** https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
 - **Sounds used:**
   - https://www.youtube.com/watch?v=ETdAlFuJ9PE&ab_channel=FosteringResilience
