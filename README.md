@@ -90,17 +90,15 @@ https://youtu.be/XMGOfJxnH7s?si=NhBTRwoqJFEc_enB
 - **OpenAI API:** https://platform.openai.com/docs/quickstart 
 - **React Structure Guide:** https://github.com/alan2207/bulletproof-react/blob/master/docs/project-structure.md
 - **Meditation Sounds:**
-  -25:https://www.youtube.com/watch?v=PPA_3iXYCt0&ab_channel=PowerofPositiveenergy
-  -10:https://www.youtube.com/watch?v=4S3yJkGWM4E&ab_channel=Goodful
-  -5:https://www.youtube.com/watch?v=ETdAlFuJ9PE&ab_channel=FosteringResilience
--Binaural Beats
-  -25:https://www.youtube.com/watch?v=F-PwwYe6M3E&ab_channel=BinauralTransformation
-  -10:https://www.youtube.com/watch?v=XJewOOOLOfA&ab_channel=HealingMeditationMusic
-  -5:https://www.youtube.com/watch?v=NACJwvt1dHI&ab_channel=SonoLumin
--Chimes
-  -25:https://www.youtube.com/watch?v=rc8ZHhMoZa4&ab_channel=Moodrise
-  -10:https://www.youtube.com/watch?v=383DxpH44l0&ab_channel=Sound-and-SilenceResonantHealing
-  -5:https://www.youtube.com/watch?v=933iGRsKdao&ab_channel=SerenitySeekers
+  - https://www.youtube.com/watch?v=PPA_3iXYCt0&ab_channel=PowerofPositiveenergy
+  - https://www.youtube.com/watch?v=4S3yJkGWM4E&ab_channel=Goodful
+  - https://www.youtube.com/watch?v=ETdAlFuJ9PE&ab_channel=FosteringResilience
+  - https://www.youtube.com/watch?v=F-PwwYe6M3E&ab_channel=BinauralTransformation
+  - https://www.youtube.com/watch?v=XJewOOOLOfA&ab_channel=HealingMeditationMusic
+  - https://www.youtube.com/watch?v=NACJwvt1dHI&ab_channel=SonoLumin
+  - https://www.youtube.com/watch?v=rc8ZHhMoZa4&ab_channel=Moodrise
+  - https://www.youtube.com/watch?v=383DxpH44l0&ab_channel=Sound-and-SilenceResonantHealing
+  - https://www.youtube.com/watch?v=933iGRsKdao&ab_channel=SerenitySeekers
 
 
 
