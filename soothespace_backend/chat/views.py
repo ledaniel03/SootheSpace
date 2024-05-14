@@ -23,7 +23,7 @@ API views for managing chat sessions, sending messages, and retrieving messages 
   and returns them formatted with message direction, text, and associated username. Responds with an error message if the session ID is invalid.
 """
 
-API_KEY = 'sk-proj-OeHNgF9IEpVUg1yLxxE1T3BlbkFJYUiDMSnBgsKUpahRHSmt'
+API_KEY = ''
 
 
 @csrf_exempt
