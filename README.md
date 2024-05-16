@@ -1,6 +1,8 @@
 # SootheSpace: Simply Serene
 SootheSpace is your personal retreat for managing stress, anxiety, and low moods. Through equipping you with digital mood tracking features, SootheSpace will then introduce clinically proven strategies from cognitive behavioral therapy. Designed to be simple & accessible yet effective, SootheSpace aims to enhance your mental wellbeing so that you can face each day with a more positive outlook. 
 
+** NOTE: **This project was developed for mobile devices and is yet to be fully responsive on larger screens. Test it on mobile & in light mode for the best viewing experience! **
+
 **Link to project:** [http://recruiters-love-seeing-live-demos.com/](https://soothespace.netlify.app/) **(Frontend may not be hosted or still connected to the backend when this is viewed)**
 
 ## How It's Made:
